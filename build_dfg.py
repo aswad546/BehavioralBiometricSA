@@ -968,7 +968,7 @@ def build_dfg(child, var_loc, var_glob, unknown_var, id_list, entry):
     """
 
     if child.name == 'VariableDeclaration':
-        if node.attributes['name'] != 'var':  # let or const
+        if child.attributes['kind'] != 'var':  # let or const
             if not var_loc.limited_scope.before_limit_list:  # If before_list is empty
                 var_loc.set_before_limit_list(var_loc.var_list)  # We fill it
             # Otherwise it stays as it is

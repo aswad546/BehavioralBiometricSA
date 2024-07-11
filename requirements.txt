@@ -1,0 +1,4 @@
+psycopg2_binary==2.9.9
+pandas==2.2.2
+psutil==5.9.8
+graphviz==0.20.3

@@ -91,11 +91,12 @@ def get_data_flow(input_file, benchmarks, store_pdgs=None, check_var=False,
             draw_cfg(cfg_nodes, attributes=True, save_path=save_path_cfg)
         unknown_var = []
         try:
-            # with Timeout(300):  # Tries to produce DF within 60s
-            dfg_nodes = df_scoping(cfg_nodes, var_loc=VarList(), var_glob=VarList(),
+            with Timeout(300):  # Tries to produce DF within 60s
+                dfg_nodes = df_scoping(cfg_nodes, var_loc=VarList(), var_glob=VarList(),
                                        unknown_var=unknown_var, id_list=[], entry=1)[0]
         except Timeout.Timeout:
             logging.exception('Timed out for %s', input_file)
+            print('Took too long to create data flow graph')
             return None
         if save_path_pdg is not False:
             draw_pdg(dfg_nodes, attributes=True, save_path=save_path_pdg)
