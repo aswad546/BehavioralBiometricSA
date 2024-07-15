@@ -4,6 +4,9 @@ from static_helpers import *
 import json
 import os
 import concurrent.futures
+from itertools import count
+import time
+from multiprocessing import Lock, Manager
 
 
 # Database connection parameters
@@ -397,10 +400,10 @@ def filter_sinks(APIs):
     return filtered_list
 
 
-def write_code_to_file(code, id):
-    open('/tmp/exp.js', 'w').close()
+def write_code_to_file(code, filename):
+    open(filename, 'w').close()
     # write content of current url js code
-    with open("/tmp/exp.js", 'a') as jsfile:
+    with open(filename, 'a') as jsfile:
         print(code, file=jsfile)
 
 def countAPIs(apis, API_list):
@@ -448,10 +451,9 @@ def insert_into_table(table_name, data):
     return insert_statement, values
 
 
-def analysis_method(id, url, code, APIs, write_cursor, write_conn, count):
+def analysis_method(id, url, code, APIs, write_cursor, write_conn, count, lock):
     #Ignore scripts belonging to the consent-o-matic extension
     if "chrome-extension://pogpcelnjdlchjbjcakalbgppnhkondb" in url:
-        print('Script is from consent-o-matic')
         return
 
     insertion_data = {
@@ -464,18 +466,20 @@ def analysis_method(id, url, code, APIs, write_cursor, write_conn, count):
         'behavioral_source_apis': [],
         'behavioral_source_api_count': 0,
         'fingerprinting_source_api_count': 0,
-        'graph_construction_timeout': False,
+        'graph_construction_failure': False,
         'dataflow_to_sink': False,
         'apis_going_to_sink': {},
     }
 
     print('Processing script: ', count)
-    count+=1
+    
     APIs, unique_APIs = split_APIs(APIs)
     
     #Only check a script if it contains atleast one of the many behavioral sources contained in this file
     if check_behavioral_source(unique_APIs):
-        write_code_to_file(code, id)
+        #Temporary file to write script code to
+        filename = f"/tmp/exp{count}.js"
+        write_code_to_file(code, filename)
         source_APIs = filter_sources(APIs)
         sink_APIs = filter_sinks(APIs)
 
@@ -483,11 +487,15 @@ def analysis_method(id, url, code, APIs, write_cursor, write_conn, count):
         insertion_data['behavioral_source_apis'], insertion_data['fingerprinting_source_apis'] = getAllSourceAPIs(source_APIs)
         insertion_data['behavioral_source_api_count'] = len(insertion_data['behavioral_source_apis'])
         insertion_data['fingerprinting_source_api_count'] = len(insertion_data['fingerprinting_source_apis'])
-        pdg = get_data_flow('/tmp/exp.js', benchmarks=dict())
+        start_time = time.time()
+        pdg = get_data_flow(filename, url, lock, benchmarks=dict())
+        end_time = time.time()
+        elapsed_time = end_time - start_time
+        print(f"Took: {elapsed_time:.2f} seconds for {url}")
         if pdg == None:
             print('Unable to generate graph for url: ', url)
-            insertion_data['graph_construction_timeout'] = True
-            insert_statement, values = insert_into_table('static_info', insertion_data)
+            insertion_data['graph_construction_failure'] = True
+            insert_statement, values = insert_into_table('multicore_static_info', insertion_data)
             write_cursor.execute(insert_statement, values)
             write_conn.commit()
             ###################################################################
@@ -524,10 +532,9 @@ def analysis_method(id, url, code, APIs, write_cursor, write_conn, count):
                         if end in old:
                             endpoint_score[end.get_id()]['end'] = True
                     else:
-                        
                         if(api['API'] not in endpoint_score[end.get_id()]['source_apis']):
                             endpoint_score[end.get_id()]['source_apis'].append(api['API'])
-                            endpoint_score[end.get_id()]['source_count'] = len(list(set(endpoint_score[end.get_id()]['source_apis'])))
+                            endpoint_score[end.get_id()]['source_count'] = len(list(set(endpoint_score[end.get_id()]['source_apis']))) #Could also just add 1 here
         sink_data = {}
         insertion_data['api_aggregation_score'] = findMaxAggregationScore(endpoint_score)
         for i,j in endpoint_score.items():
@@ -547,14 +554,14 @@ def analysis_method(id, url, code, APIs, write_cursor, write_conn, count):
             for i,_ in sink_data.items():
                 sinks.append(i)
 
-        insert_statement, values = insert_into_table('static_info', insertion_data)
+        insert_statement, values = insert_into_table('multicore_static_info', insertion_data)
         write_cursor.execute(insert_statement, values)
         write_conn.commit()
     else:
         print('File with id ' + str(id) + ' contains no relevant sources')
 
 
-def worker(data):
+def worker(data, lock):
     write_conn = psycopg2.connect(
         dbname=dbname,
         user=user,
@@ -566,14 +573,14 @@ def worker(data):
 
     id, url, code, APIs, count = data
     # Call the analysis method
-    analysis_method(id, url, code, APIs, write_cursor, write_conn, count)
+    
+    analysis_method(id, url, code, APIs, write_cursor, write_conn, count, lock)
 
     write_cursor.close()
     write_conn.close()
 
 
 def analyze():
-    count = 0
     # Connect to the database
     conn = psycopg2.connect(
         dbname=dbname,
@@ -598,7 +605,7 @@ def analyze():
         cursor.itersize = 1000  # chunk size
 
         create_table_query = '''
-        CREATE TABLE IF NOT EXISTS static_info (
+        CREATE TABLE IF NOT EXISTS multicore_static_info (
             script_id SERIAL,
             script_url TEXT,
             code TEXT,
@@ -608,7 +615,7 @@ def analyze():
             behavioral_source_apis JSONB,
             behavioral_source_api_count FLOAT,
             fingerprinting_source_api_count FLOAT,
-            graph_construction_timeout BOOLEAN,
+            graph_construction_failure BOOLEAN,
             dataflow_to_sink BOOLEAN,
             apis_going_to_sink JSONB
         );
@@ -616,34 +623,32 @@ def analyze():
 
         write_cursor.execute(create_table_query)
         write_conn.commit()
-        print("Table 'static_info' created successfully or already exists.")
+        print("Table 'multicore_static_info' created successfully or already exists.")
         
         
 
         query = "SELECT * FROM script_flow;"
         
         cursor.execute(query)
-
-        num_workers = os.cpu_count()
+        # Make sure num_workers less than the CPU count os.cpu_count() due to cpu overload
+        num_workers = os.cpu_count() - 16
         print(f"Number of available CPU cores: {num_workers}")
-    
-        # with concurrent.futures.ProcessPoolExecutor(max_workers=num_workers) as executor:
-        #     # Submit tasks to the process pool
-        #     tasks = [(id, url, code, APIs, count) for id, _, _, code, origin, url, APIs, _ in cursor]
-        #     futures = {executor.submit(worker, task): task for task in tasks}
-        #     for future in concurrent.futures.as_completed(futures):
-        #         task = futures[future]
-        #         try:
-        #             # We don't need to do anything with the result, just ensure the task completes
-        #             future.result()
-        #             print(f"Task {task[0]} completed successfully")
-        #         except Exception as exc:
-        #             print(f"Task {task[0]} generated an exception: {exc}")
-    
-
-        for id, _ , _, code, origin, url, APIs, _  in cursor:
-            
-            analysis_method(id, url, code, APIs, write_cursor, write_conn, count)
+        counter = count()
+        tasks = []
+        tasks = [(id, url, code, APIs, next(counter)) for id, _, _, code, origin, url, APIs, _ in cursor]
+        with Manager() as manager:
+            lock = manager.Lock()
+            with concurrent.futures.ProcessPoolExecutor(max_workers=num_workers) as executor:
+                # Submit tasks to the process pool
+                futures = {executor.submit(worker, task, lock): task for task in tasks}
+                for future in concurrent.futures.as_completed(futures):
+                    task = futures[future]
+                    try:
+                        # We don't need to do anything with the result, just ensure the task completes
+                        future.result()
+                        print(f"Task {task[4]} completed successfully")
+                    except Exception as exc:
+                        print(f"Task {task[4]} generated an exception: {exc}")
         
         write_cursor.close()
         write_conn.close()

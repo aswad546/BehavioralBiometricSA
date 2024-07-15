@@ -22,7 +22,6 @@ import copy
 import js_reserved
 import var_list
 
-
 DECLARATIONS = ['VariableDeclaration', 'FunctionDeclaration']
 EXPRESSIONS = ['AssignmentExpression', 'ArrayExpression', 'ArrowFunctionExpression',
                'AwaitExpression', 'BinaryExpression', 'CallExpression', 'ClassExpression',

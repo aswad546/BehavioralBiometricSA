@@ -38,7 +38,7 @@ def pickle_dump_process(dfg_nodes, store_pdg):
     pickle.dump(dfg_nodes, open(store_pdg, 'wb'))
 
 
-def get_data_flow(input_file, benchmarks, store_pdgs=None, check_var=False,
+def get_data_flow(input_file, url, lock, benchmarks, store_pdgs=None, check_var=False,
                   save_path_ast=False, save_path_cfg=False, save_path_pdg=False):
     """
         Produces the PDG of a given file.
@@ -91,11 +91,11 @@ def get_data_flow(input_file, benchmarks, store_pdgs=None, check_var=False,
             draw_cfg(cfg_nodes, attributes=True, save_path=save_path_cfg)
         unknown_var = []
         try:
-            with Timeout(300):  # Tries to produce DF within 60s
+            with Timeout(400):  # Tries to produce DF within 60s
                 dfg_nodes = df_scoping(cfg_nodes, var_loc=VarList(), var_glob=VarList(),
                                        unknown_var=unknown_var, id_list=[], entry=1)[0]
         except Timeout.Timeout:
-            logging.exception('Timed out for %s', input_file)
+            logging.exception(f'Timed out for {input_file} at {url}')
             print('Took too long to create data flow graph')
             return None
         if save_path_pdg is not False:
@@ -119,6 +119,7 @@ def get_data_flow(input_file, benchmarks, store_pdgs=None, check_var=False,
                 if os.path.isfile(store_pdg) and os.stat(store_pdg).st_size == 0:
                     os.remove(store_pdg)
         return dfg_nodes
+    print(f'Failed to create graph for file {input_file} at {url}')
     return None
 
 
