@@ -20,7 +20,7 @@ module.exports = {
 };
 
 
-var esprima = require("esprima-next");
+var esprima = require("espree");
 var es = require("escodegen");
 var fs = require("fs");
 
