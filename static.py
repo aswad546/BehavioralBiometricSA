@@ -429,10 +429,12 @@ def countAPIs(apis, API_list):
 
 def findMaxAggregationScore(nodes):
     max = 0
-    for i,j in nodes.items():
+    index = -1
+    for i,_ in nodes.items():
         if nodes[i]['source_count'] > max:
             max = nodes[i]['source_count']
-    return max
+            index = i
+    return max, nodes[index]['source_apis'] if index != -1 else [], nodes[index]['behavioral_count'], nodes[index]['fp_count']
 
 def findEventListenersAttached(APIs):
     events = []
@@ -464,6 +466,24 @@ def insert_into_table(table_name, data):
 
     return insert_statement, values
 
+def findMaxBehavioralScore(nodes):
+    max = 0
+    index = -1
+    for i,_ in nodes.items():
+        if nodes[i]['behavioral_count'] > max:
+            max = nodes[i]['behavioral_count']
+            index = i
+    return max, nodes[index]['behavioral_apis'] if index != -1 else []
+
+def findMaxFPScore(nodes):
+    max = 0
+    index = -1
+    for i,_ in nodes.items():
+        if nodes[i]['fp_count'] > max:
+            max = nodes[i]['fp_count']
+            index = i
+    return max, nodes[index]['fp_apis'] if index != -1 else []
+
 
 def analysis_method(id, url, code, APIs, write_cursor, write_conn, count, lock):
     #Ignore scripts belonging to the consent-o-matic extension
@@ -474,7 +494,14 @@ def analysis_method(id, url, code, APIs, write_cursor, write_conn, count, lock):
         'script_id': id,
         'script_url': url,
         'code': code,
-        'api_aggregation_score': -1,
+        'max_api_aggregation_score': -1,
+        'behavioral_api_agg_count': -1,
+        'fp_api_agg_count': -1,
+        'max_aggregated_apis': [],
+        'max_behavioral_api_aggregation_score' : -1,
+        'aggregated_behavioral_apis': [],
+        'max_fingerprinting_api_aggregation_score': -1,
+        'aggregated_fingerprinting_apis': [],
         'attached_listeners': [],
         'fingerprinting_source_apis': [],
         'behavioral_source_apis': [],
@@ -519,7 +546,6 @@ def analysis_method(id, url, code, APIs, write_cursor, write_conn, count, lock):
             print('File does not call any of the known sinks')
 
         #Find if they go to known sinks down the whole path
-        
         sink_node_apis = {}
         for api in sink_APIs:
             sink_api_statement_nodes = []
@@ -542,15 +568,34 @@ def analysis_method(id, url, code, APIs, write_cursor, write_conn, count, lock):
                     if end.get_id() not in endpoint_score:
                         endpoint_score[end.get_id()] = {}
                         endpoint_score[end.get_id()]['source_count'] = 1
+                        endpoint_score[end.get_id()]['behavioral_count'] = 0
+                        endpoint_score[end.get_id()]['behavioral_apis'] = []
+                        endpoint_score[end.get_id()]['fp_count'] = 0
+                        endpoint_score[end.get_id()]['fp_apis'] = []
+                        if api['API'] in behavioral_sources:
+                            endpoint_score[end.get_id()]['behavioral_count'] += 1
+                            endpoint_score[end.get_id()]['behavioral_apis'].append(api['API'])
+                        else:
+                            endpoint_score[end.get_id()]['fp_count'] += 1
+                            endpoint_score[end.get_id()]['fp_apis'].append(api['API'])
                         endpoint_score[end.get_id()]['source_apis'] = [api['API']]
+                        #If this was the last node in the dataflow path
                         if end in old:
                             endpoint_score[end.get_id()]['end'] = True
                     else:
                         if(api['API'] not in endpoint_score[end.get_id()]['source_apis']):
+                            if (api['API'] in behavioral_sources):
+                                endpoint_score[end.get_id()]['behavioral_count'] += 1
+                                endpoint_score[end.get_id()]['behavioral_apis'].append(api['API'])
+                            else:
+                                endpoint_score[end.get_id()]['fp_count'] += 1
+                                endpoint_score[end.get_id()]['fp_apis'].append(api['API'])
                             endpoint_score[end.get_id()]['source_apis'].append(api['API'])
                             endpoint_score[end.get_id()]['source_count'] = len(list(set(endpoint_score[end.get_id()]['source_apis']))) #Could also just add 1 here
         sink_data = {}
-        insertion_data['api_aggregation_score'] = findMaxAggregationScore(endpoint_score)
+        insertion_data['max_api_aggregation_score'], insertion_data['max_aggregated_apis'], insertion_data['behavioral_api_agg_count'], insertion_data['fp_api_agg_count'] = findMaxAggregationScore(endpoint_score)
+        insertion_data['max_behavioral_api_aggregation_score'], insertion_data['aggregated_behavioral_apis'] = findMaxBehavioralScore(endpoint_score)
+        insertion_data['max_fingerprinting_api_aggregation_score'], insertion_data['aggregated_fingerprinting_apis'] = findMaxFPScore(endpoint_score)
         for i,j in endpoint_score.items():
             if i in sink_node_apis:
                 if sink_node_apis[i] in sink_data:
@@ -623,7 +668,14 @@ def analyze():
             script_id SERIAL,
             script_url TEXT,
             code TEXT,
-            api_aggregation_score FLOAT,
+            max_api_aggregation_score FLOAT,
+            behavioral_api_agg_count FLOAT,
+            fp_api_agg_count FLOAT,
+            max_aggregated_apis JSONB,
+            max_behavioral_api_aggregation_score FLOAT,
+            aggregated_behavioral_apis JSONB,
+            max_fingerprinting_api_aggregation_score FLOAT,
+            aggregated_fingerprinting_apis JSONB,
             attached_listeners JSONB,
             fingerprinting_source_apis JSONB,
             behavioral_source_apis JSONB,
