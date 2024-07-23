@@ -6,7 +6,7 @@ import os
 import concurrent.futures
 from itertools import count
 import time
-from multiprocessing import Lock, Manager
+from multiprocessing import Manager
 
 
 # Database connection parameters
@@ -485,7 +485,7 @@ def findMaxFPScore(nodes):
     return max, nodes[index]['fp_apis'] if index != -1 else []
 
 
-def analysis_method(id, url, code, APIs, write_cursor, write_conn, count, lock):
+def analysis_method(id, url, code, APIs, write_cursor, write_conn, count, lock, write_queue):
     #Ignore scripts belonging to the consent-o-matic extension
     if "chrome-extension://pogpcelnjdlchjbjcakalbgppnhkondb" in url:
         return
@@ -537,9 +537,9 @@ def analysis_method(id, url, code, APIs, write_cursor, write_conn, count, lock):
             print('Unable to generate graph for url: ', url)
             insertion_data['graph_construction_failure'] = True
             insert_statement, values = insert_into_table('multicore_static_info', insertion_data)
-            write_cursor.execute(insert_statement, values)
-            write_conn.commit()
-            ###################################################################
+            write_queue.put((insert_statement, values))
+            # write_cursor.execute(insert_statement, values)
+            # write_conn.commit()
             return
             
         if (len(sink_APIs) == 0):
@@ -580,8 +580,7 @@ def analysis_method(id, url, code, APIs, write_cursor, write_conn, count, lock):
                             endpoint_score[end.get_id()]['fp_apis'].append(api['API'])
                         endpoint_score[end.get_id()]['source_apis'] = [api['API']]
                         #If this was the last node in the dataflow path
-                        if end in old:
-                            endpoint_score[end.get_id()]['end'] = True
+                        endpoint_score[end.get_id()]['end'] = True if end in old else False
                     else:
                         if(api['API'] not in endpoint_score[end.get_id()]['source_apis']):
                             if (api['API'] in behavioral_sources):
@@ -591,7 +590,7 @@ def analysis_method(id, url, code, APIs, write_cursor, write_conn, count, lock):
                                 endpoint_score[end.get_id()]['fp_count'] += 1
                                 endpoint_score[end.get_id()]['fp_apis'].append(api['API'])
                             endpoint_score[end.get_id()]['source_apis'].append(api['API'])
-                            endpoint_score[end.get_id()]['source_count'] = len(list(set(endpoint_score[end.get_id()]['source_apis']))) #Could also just add 1 here
+                            endpoint_score[end.get_id()]['source_count'] += 1 
         sink_data = {}
         insertion_data['max_api_aggregation_score'], insertion_data['max_aggregated_apis'], insertion_data['behavioral_api_agg_count'], insertion_data['fp_api_agg_count'] = findMaxAggregationScore(endpoint_score)
         insertion_data['max_behavioral_api_aggregation_score'], insertion_data['aggregated_behavioral_apis'] = findMaxBehavioralScore(endpoint_score)
@@ -614,13 +613,14 @@ def analysis_method(id, url, code, APIs, write_cursor, write_conn, count, lock):
                 sinks.append(i)
 
         insert_statement, values = insert_into_table('multicore_static_info', insertion_data)
-        write_cursor.execute(insert_statement, values)
-        write_conn.commit()
+        write_queue.put((insert_statement, values))
+        # write_cursor.execute(insert_statement, values)
+        # write_conn.commit()
     else:
         print('File with id ' + str(id) + ' contains no relevant sources')
 
 
-def worker(data, lock):
+def worker(data, lock, queue):
     write_conn = psycopg2.connect(
         dbname=dbname,
         user=user,
@@ -633,8 +633,46 @@ def worker(data, lock):
     id, url, code, APIs, count = data
     # Call the analysis method
     
-    analysis_method(id, url, code, APIs, write_cursor, write_conn, count, lock)
+    analysis_method(id, url, code, APIs, write_cursor, write_conn, count, lock, queue)
 
+    write_cursor.close()
+    write_conn.close()
+
+
+def batch_writer_worker(queue, batch_size, db_write_function):
+    buffer = []
+    while True:
+        item = queue.get()
+        if item is None:  # Sentinel value to indicate end of processing
+            if buffer:
+                db_write_function(buffer)
+            break
+        buffer.append(item)
+        if len(buffer) >= batch_size:
+            db_write_function(buffer)
+            buffer = []
+
+def write_batch_to_database(batch):
+    write_conn = psycopg2.connect(
+        dbname=dbname,
+        user=user,
+        password=password,
+        host=host,
+        port=port
+    )
+    write_cursor = write_conn.cursor()
+    # All insert statements i.e. insert into table fields are same so pick first one
+    try:
+        insert_statement = batch[0][0]
+        values = []
+        for elem in batch:
+            values.append(elem[1])
+        write_cursor.executemany(insert_statement, values)
+        write_conn.commit()
+    except Exception as e:
+        print(f"Error writing batch to database: {e}")
+
+    write_cursor = write_conn.cursor()
     write_cursor.close()
     write_conn.close()
 
@@ -698,15 +736,21 @@ def analyze():
         cursor.execute(query)
         # Make sure num_workers less than the CPU count os.cpu_count() due to cpu overload
         num_workers = os.cpu_count() - 16
+        batch_size = 10
         print(f"Number of available CPU cores: {num_workers}")
         counter = count()
         tasks = []
         tasks = [(id, url, code, APIs, next(counter)) for id, _, _, code, _, url, APIs, _ in cursor]
         with Manager() as manager:
             lock = manager.Lock()
+            queue = manager.Queue()
+
+            writer_process = Process(target=batch_writer_worker, args=(queue, batch_size, write_batch_to_database))
+            writer_process.start()
+
             with concurrent.futures.ProcessPoolExecutor(max_workers=num_workers) as executor:
                 # Submit tasks to the process pool
-                futures = {executor.submit(worker, task, lock): task for task in tasks}
+                futures = {executor.submit(worker, task, lock, queue): task for task in tasks}
                 for future in concurrent.futures.as_completed(futures):
                     task = futures[future]
                     try:
@@ -715,6 +759,11 @@ def analyze():
                         print(f"Task {task[4]} completed successfully")
                     except Exception as exc:
                         print(f"Task {task[4]} generated an exception: {exc}")
+            # Signal writer to end
+            queue.put(None)
+            # Wait for the writer process to finish
+            writer_process.join()
+
         
         write_cursor.close()
         write_conn.close()

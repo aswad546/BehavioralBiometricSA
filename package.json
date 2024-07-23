@@ -9,6 +9,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "espree": "^10.1.0",
     "esprima": "^4.0.1",
     "esprima-next": "^6.0.3",
     "graphviz": "^0.0.9"
