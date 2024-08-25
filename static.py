@@ -121,22 +121,6 @@ behavioral_sources = [
     'TouchEvent.timeStamp',
     'TouchEvent.type',
     'TouchEvent.changedTouches',
-    'DeviceMotionEventAcceleration.x', 
-    'DeviceMotionEventAcceleration.y',
-    'DeviceMotionEventAcceleration.z',
-    'DeviceMotionEventRotationRate.alpha', 
-    'DeviceMotionEventRotationRate.beta',
-    'DeviceMotionEventRotationRate.gamma',
-    'DeviceMotionEvent.acceleration',
-    'DeviceMotionEvent.rotationRate',
-    'DeviceMotionEvent.interval',
-    'DeviceMotionEvent.accelerationIncludingGravity',
-    'DeviceOrientationEvent.alpha',
-    'DeviceOrientationEvent.beta'
-    'DeviceOrientationEvent.gamma',
-    'ScreenOrientation.type',
-    'ScreenOrientation.angle',
-    'ScreenOrientation.unlock',
     'ClipboardEvent.target',
     'ClipboardEvent.type',
     'ClipboardEvent.clipboardData',
@@ -170,10 +154,21 @@ browser_fingerprinting_sources = [
     'Window.devicePixelRatio',
     'Window.requestAnimationFrame',
     'Window.innerWidth',
-    'Window.indexedDB',
+    'Window.innerHeight',
     'Window.webkitRequestFileSystem',
     'Window.outerWidth',
+    'Window.outerHeight',
     'Window.navigator',
+    'Window.pageXOffset',
+    'Window.pageYOffset',
+    'Window.screenLeft',
+    'Window.screenTop',
+    'Window.screenX',
+    'Window.screenY',
+    'Window.scrollX',
+    'Window.scrollY',
+
+
     
     'DOMRect.x',
     'DOMRect.top',
@@ -210,6 +205,10 @@ browser_fingerprinting_sources = [
     'WebGLRenderingContext.compileShader',
     'WebGLRenderingContext.canvas',
 
+    'WebGLShaderPrecisionFormat.precision',
+    'WebGLShaderPrecisionFormat.rangeMax',
+    'WebGLShaderPrecisionFormat.rangeMin',
+
     'CanvasRenderingContext2D.measureText',
     'CanvasRenderingContext2D.fillStyle',
     'CanvasRenderingContext2D.isPointInPath',
@@ -237,6 +236,7 @@ browser_fingerprinting_sources = [
     'HTMLCanvasElement.width',
     'HTMLCanvasElement.height',
     'HTMLCanvasElement.getContext',
+    'HTMLCanvasElement.toDataUrl'
     
     'Navigator.userActivation',
     'Navigator.mediaSession',
@@ -258,6 +258,7 @@ browser_fingerprinting_sources = [
     'Navigator.getGamepads',
     'Navigator.storage',
     'Navigator.vendor',
+    'Navigator.vendorSub',
     'Navigator.onLine',
     'Navigator.serial',
     'Navigator.vibrate',
@@ -271,6 +272,7 @@ browser_fingerprinting_sources = [
     'Navigator.appVersion',
     'Navigator.productSub',
     'Navigator.appCodeName',
+    'Navigator.buildID',
     'Navigator.mediaDevices',
     'Navigator.cookieEnabled',
     'Navigator.userAgentData',
@@ -280,13 +282,32 @@ browser_fingerprinting_sources = [
     'Navigator.webkitPersistentStorage',
     'Navigator.getInstalledRelatedApps',
     'Navigator.webkitGetUserMedia',
+    'Navigator.oscpu',
 
+    'WorkerNavigator.userAgent',
+    'WorkerNavigator.platform',
+
+    'VisualViewport.height',
+    'VisualViewport.offsetLeft',
+    'VisualViewport.offsetTop',
+    'VisualViewport.pageLeft',
+    'VisualViewport.pageTop',
+    'VisualViewport.scale',
+    'VisualViewport.width',
+
+    'XMLDocument.location',
+
+    'Storage.quota',
+    'Storage.usage',
+
+    'OfflineAudioContext.baseLatency'
     'OfflineAudioContext.startRendering',
     'OfflineAudioContext.destination',
     'OfflineAudioContext.currentTime',
     'OfflineAudioContext.createOscillator',
     'OfflineAudioContext.state',
     'OfflineAudioContext.createDynamicsCompressor',
+    'OfflineAudioContext.sampleRate',
     
     'NetworkInformation.type',
     'NetworkInformation.downlinkMax',
@@ -300,10 +321,28 @@ browser_fingerprinting_sources = [
 
     'OfflineAudioCompletionEvent.renderedBuffer',
     'PermissionStatus.state',
+    'Permissions.state',
 
     'XRSystem.supportsSession',
 
     'Geolocation.getCurrentPosition'
+
+    'DeviceMotionEventAcceleration.x', 
+    'DeviceMotionEventAcceleration.y',
+    'DeviceMotionEventAcceleration.z',
+    'DeviceMotionEventRotationRate.alpha', 
+    'DeviceMotionEventRotationRate.beta',
+    'DeviceMotionEventRotationRate.gamma',
+    'DeviceMotionEvent.acceleration',
+    'DeviceMotionEvent.rotationRate',
+    'DeviceMotionEvent.interval',
+    'DeviceMotionEvent.accelerationIncludingGravity',
+    'DeviceOrientationEvent.alpha',
+    'DeviceOrientationEvent.beta'
+    'DeviceOrientationEvent.gamma',
+    'ScreenOrientation.type',
+    'ScreenOrientation.angle',
+    'ScreenOrientation.unlock',
 ]
 known_sinks = [
     'Window.sessionStorage', 
@@ -486,8 +525,8 @@ def findMaxFPScore(nodes):
 
 
 def analysis_method(id, url, code, APIs, write_cursor, write_conn, count, lock, write_queue):
-    #Ignore scripts belonging to the consent-o-matic extension
-    if "chrome-extension://pogpcelnjdlchjbjcakalbgppnhkondb" in url:
+    #Ignore scripts belonging to the consent-o-matic extension and devtools
+    if "chrome-extension://pogpcelnjdlchjbjcakalbgppnhkondb" in url or "devtools://devtools" in url:
         return
 
     insertion_data = {
@@ -538,8 +577,6 @@ def analysis_method(id, url, code, APIs, write_cursor, write_conn, count, lock, 
             insertion_data['graph_construction_failure'] = True
             insert_statement, values = insert_into_table('multicore_static_info', insertion_data)
             write_queue.put((insert_statement, values))
-            # write_cursor.execute(insert_statement, values)
-            # write_conn.commit()
             return
             
         if (len(sink_APIs) == 0):
@@ -614,8 +651,6 @@ def analysis_method(id, url, code, APIs, write_cursor, write_conn, count, lock, 
 
         insert_statement, values = insert_into_table('multicore_static_info', insertion_data)
         write_queue.put((insert_statement, values))
-        # write_cursor.execute(insert_statement, values)
-        # write_conn.commit()
     else:
         print('File with id ' + str(id) + ' contains no relevant sources')
 
