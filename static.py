@@ -236,7 +236,9 @@ browser_fingerprinting_sources = [
     'HTMLCanvasElement.width',
     'HTMLCanvasElement.height',
     'HTMLCanvasElement.getContext',
-    'HTMLCanvasElement.toDataUrl'
+    'HTMLCanvasElement.toDataUrl',
+
+    'InputDeviceCapabilities.firesTouchEvents',
     
     'Navigator.userActivation',
     'Navigator.mediaSession',

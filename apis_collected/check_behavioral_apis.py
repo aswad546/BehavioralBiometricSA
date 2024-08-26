@@ -27,9 +27,12 @@ def getValidApis():
     return std_api
 
 # Step 1: Read the input from a file
-input_file_path = './nudata.txt'  # Replace with the actual path to your input file
+input_file_path = './Sardine.apis'  # Replace with the actual path to your input file
 
+dict1 = {}
 std_api = getValidApis()
+for i in std_api:
+    dict1[i] = True
 
 with open(input_file_path, 'r') as file:
     output = file.read()  # Read the entire content of the file into a string
@@ -39,8 +42,7 @@ cleaned_output = re.sub(r'[{}"]', '', output)  # Remove curly braces and extra q
 elements = cleaned_output.split(',')
 
 # Step 3: Filter out elements that contain the word 'event'
-filtered_elements = [elem for elem in elements if elem in std_api and 'event' in elem.split('.')[0].lower()]
-
+filtered_elements = [elem for elem in elements if 'event' in elem.split('.')[0].lower() or 'touch' in elem.split('.')[0].lower()]
 
 # Step 4: Remove duplicates by converting the list to a set, then back to a list
 unique_elements = list(set(filtered_elements))

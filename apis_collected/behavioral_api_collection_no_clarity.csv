@@ -1,0 +1,94 @@
+Nudata,BioCatch,Neuro-id,Accertify,BehavioSec,Darwinium,Sardine,ThreatMark,Transmit Security,Iovation,pingOne
+FocusEvent.target,ClipboardEvent.clipboardData,ClipboardEvent.get target,ClipboardEvent.target,ClipboardEvent.target,KeyboardEvent.key,ClipboardEvent.target,ClipboardEvent.isTrusted,ClipboardEvent.cancelable,Event.button,ClipboardEvent.srcElement
+FocusEvent.which,ClipboardEvent.target,ClipboardEvent.target,Event.target,Event.target,KeyboardEvent.location,Event.target,ClipboardEvent.target,ClipboardEvent.clipboardData,Event.changedTouches,ClipboardEvent.timeStamp
+KeyboardEvent.key,ClipboardEvent.type,Event.get target,KeyboardEvent.altKey,FocusEvent.composed,KeyboardEvent.which,Event.type,Event.target,ClipboardEvent.composed,Event.code,ClipboardEvent.type
+KeyboardEvent.keyCode,Event.isTrusted,Event.target,KeyboardEvent.ctrlKey,FocusEvent.composedPath,MouseEvent.button,FocusEvent.target,Event.timeStamp,ClipboardEvent.isTrusted,Event.isTrusted,Event.timeStamp
+KeyboardEvent.location,Event.target,FocusEvent.get target,KeyboardEvent.isComposing,FocusEvent.target,MouseEvent.clientX,FocusEvent.type,FocusEvent.target,ClipboardEvent.target,Event.keyCode,Event.type
+KeyboardEvent.target,Event.type,FocusEvent.target,KeyboardEvent.key,KeyboardEvent.altKey,MouseEvent.clientY,InputEvent.inputType,InputEvent.inputType,Event.cancelable,Event.pointerType,FocusEvent.relatedTarget
+KeyboardEvent.which,FocusEvent.isTrusted,InputEvent.get target,KeyboardEvent.metaKey,KeyboardEvent.composed,MouseEvent.offsetX,InputEvent.target,InputEvent.target,Event.composed,Event.screenX,FocusEvent.srcElement
+MouseEvent.button,FocusEvent.target,InputEvent.target,KeyboardEvent.repeat,KeyboardEvent.composedPath,MouseEvent.offsetY,KeyboardEvent.altKey,KeyboardEvent.altKey,Event.isTrusted,Event.type,FocusEvent.timeStamp
+MouseEvent.pageX,FocusEvent.timeStamp,KeyboardEvent.altKey,KeyboardEvent.shiftKey,KeyboardEvent.constructor,MouseEvent.relatedTarget,KeyboardEvent.ctrlKey,KeyboardEvent.code,FocusEvent.target,KeyboardEvent.button,FocusEvent.type
+MouseEvent.pageY,FocusEvent.type,KeyboardEvent.ctrlKey,KeyboardEvent.target,KeyboardEvent.ctrlKey,MouseEvent.toElement,KeyboardEvent.key,KeyboardEvent.ctrlKey,InputEvent.cancelable,KeyboardEvent.changedTouches,KeyboardEvent.key
+MouseEvent.target,InputEvent.constructor,KeyboardEvent.get target,MouseEvent.clientX,KeyboardEvent.key,MouseEvent.type,KeyboardEvent.metaKey,KeyboardEvent.isTrusted,InputEvent.composed,KeyboardEvent.code,KeyboardEvent.keyCode
+MouseEvent.which,InputEvent.isTrusted,KeyboardEvent.get type,MouseEvent.clientY,KeyboardEvent.keyCode,PointerEvent.pointerType,KeyboardEvent.shiftKey,KeyboardEvent.key,InputEvent.inputType,KeyboardEvent.isTrusted,KeyboardEvent.srcElement
+PointerEvent.pageX,InputEvent.target,KeyboardEvent.isComposing,PointerEvent.button,KeyboardEvent.location,Touch.clientX,KeyboardEvent.target,KeyboardEvent.keyCode,InputEvent.isTrusted,KeyboardEvent.keyCode,KeyboardEvent.timeStamp
+PointerEvent.pageY,InputEvent.timeStamp,KeyboardEvent.keyCode,PointerEvent.clientX,KeyboardEvent.metaKey,Touch.clientY,KeyboardEvent.type,KeyboardEvent.location,InputEvent.target,KeyboardEvent.pointerType,KeyboardEvent.type
+PointerEvent.target,InputEvent.type,KeyboardEvent.location,PointerEvent.clientY,KeyboardEvent.shiftKey,Touch.layerX,MouseEvent.screenX,KeyboardEvent.metaKey,InputEvent.view,KeyboardEvent.screenX,KeyboardEvent.which
+PointerEvent.which,KeyboardEvent.altKey,KeyboardEvent.metaKey,PointerEvent.target,KeyboardEvent.srcElement,Touch.layerY,MouseEvent.screenY,KeyboardEvent.repeat,KeyboardEvent.cancelable,KeyboardEvent.type,MouseEvent.button
+Touch.pageX,KeyboardEvent.code,KeyboardEvent.repeat,,KeyboardEvent.target,Touch.pageX,Touch.force,KeyboardEvent.shiftKey,KeyboardEvent.composed,MouseEvent.button,MouseEvent.offsetX
+Touch.pageY,KeyboardEvent.ctrlKey,KeyboardEvent.shiftKey,,KeyboardEvent.which,Touch.pageY,Touch.identifier,KeyboardEvent.target,KeyboardEvent.isTrusted,MouseEvent.changedTouches,MouseEvent.offsetY
+TouchEvent.target,KeyboardEvent.isTrusted,KeyboardEvent.target,,MouseEvent.buttons,Touch.radiusX,Touch.screenX,KeyboardEvent.timeStamp,KeyboardEvent.location,MouseEvent.code,MouseEvent.pageX
+TouchEvent.touches,KeyboardEvent.key,KeyboardEvent.type,,MouseEvent.clientX,Touch.radiusY,Touch.screenY,KeyboardEvent.type,KeyboardEvent.metaKey,MouseEvent.isTrusted,MouseEvent.pageY
+TouchEvent.which,KeyboardEvent.keyCode,KeyboardEvent.which,,MouseEvent.clientY,TouchEvent.clientX,TouchEvent.changedTouches,KeyboardEvent.which,KeyboardEvent.shiftKey,MouseEvent.keyCode,MouseEvent.relatedTarget
+,KeyboardEvent.location,MouseEvent.clientX,,MouseEvent.composed,TouchEvent.clientY,TouchEvent.touches,MouseEvent.clientX,KeyboardEvent.sourceCapabilities,MouseEvent.pointerType,MouseEvent.screenX
+,KeyboardEvent.metaKey,MouseEvent.clientY,,MouseEvent.composedPath,TouchEvent.layerX,TouchList.length,MouseEvent.clientY,KeyboardEvent.target,MouseEvent.screenX,MouseEvent.screenY
+,KeyboardEvent.repeat,MouseEvent.get target,,MouseEvent.movementX,TouchEvent.layerY,,MouseEvent.isTrusted,KeyboardEvent.view,MouseEvent.screenY,MouseEvent.target
+,KeyboardEvent.shiftKey,MouseEvent.pageX,,MouseEvent.movementY,TouchEvent.pageX,,MouseEvent.movementX,MouseEvent.altKey,MouseEvent.type,MouseEvent.timeStamp
+,KeyboardEvent.target,MouseEvent.pageY,,MouseEvent.relatedTarget,TouchEvent.pageY,,MouseEvent.movementY,MouseEvent.buttons,PointerEvent.button,MouseEvent.toElement
+,KeyboardEvent.timeStamp,MouseEvent.screenX,,MouseEvent.sourceCapabilities,TouchEvent.touches,,MouseEvent.pageX,MouseEvent.ctrlKey,PointerEvent.changedTouches,MouseEvent.type
+,KeyboardEvent.type,MouseEvent.screenY,,MouseEvent.srcElement,TouchList.length,,MouseEvent.pageY,MouseEvent.detail,PointerEvent.code,PointerEvent.button
+,MouseEvent.button,MouseEvent.target,,MouseEvent.target,,,MouseEvent.screenX,MouseEvent.offsetX,PointerEvent.keyCode,PointerEvent.offsetX
+,MouseEvent.clientX,PointerEvent.clientX,,MouseEvent.toElement,,,MouseEvent.screenY,MouseEvent.offsetY,PointerEvent.pointerType,PointerEvent.offsetY
+,MouseEvent.clientY,PointerEvent.clientY,,PointerEvent.button,,,MouseEvent.target,MouseEvent.shiftKey,PointerEvent.screenX,PointerEvent.pageX
+,MouseEvent.deltaX,PointerEvent.get target,,PointerEvent.clientX,,,MouseEvent.type,MouseEvent.sourceCapabilities,PointerEvent.screenY,PointerEvent.pageY
+,MouseEvent.deltaY,PointerEvent.pageX,,PointerEvent.clientY,,,MouseEvent.which,MouseEvent.target,PointerEvent.type,PointerEvent.screenX
+,MouseEvent.deltaZ,PointerEvent.pageY,,PointerEvent.composed,,,PointerEvent.buttons,MouseEvent.x,Touch.identifier,PointerEvent.screenY
+,MouseEvent.detail,PointerEvent.screenX,,PointerEvent.composedPath,,,PointerEvent.clientX,MouseEvent.y,TouchEvent.button,PointerEvent.srcElement
+,MouseEvent.isTrusted,PointerEvent.screenY,,PointerEvent.getCoalescedEvents,,,PointerEvent.clientY,PointerEvent.detail,TouchEvent.changedTouches,PointerEvent.target
+,MouseEvent.pageX,PointerEvent.target,,PointerEvent.pointerType,,,PointerEvent.getCoalescedEvents,PointerEvent.offsetX,TouchEvent.code,PointerEvent.timeStamp
+,MouseEvent.pageY,Touch.clientX,,PointerEvent.srcElement,,,PointerEvent.height,PointerEvent.offsetY,TouchEvent.isTrusted,PointerEvent.type
+,MouseEvent.screenX,Touch.clientY,,PointerEvent.target,,,PointerEvent.isTrusted,PointerEvent.sourceCapabilities,TouchEvent.keyCode,TextEvent.timeStamp
+,MouseEvent.screenY,Touch.force,,PointerEvent.timeStamp,,,PointerEvent.movementX,PointerEvent.target,TouchEvent.pointerType,TextEvent.type
+,MouseEvent.target,Touch.identifier,,WheelEvent.button,,,PointerEvent.movementY,PointerEvent.x,TouchEvent.screenX,Touch.clientX
+,MouseEvent.timeStamp,Touch.pageX,,WheelEvent.deltaY,,,PointerEvent.pageX,PointerEvent.y,TouchEvent.type,Touch.clientY
+,MouseEvent.type,Touch.pageY,,WheelEvent.pageX,,,PointerEvent.pageY,,TouchList.item,Touch.force
+,MouseEvent.wheelDelta,Touch.radiusX,,WheelEvent.pageY,,,PointerEvent.pointerType,,WheelEvent.button,Touch.identifier
+,MouseEvent.which,Touch.radiusY,,,,,PointerEvent.pressure,,WheelEvent.changedTouches,Touch.pageX
+,PointerEvent.button,Touch.rotationAngle,,,,,PointerEvent.screenX,,WheelEvent.code,Touch.pageY
+,PointerEvent.clientX,Touch.screenX,,,,,PointerEvent.screenY,,WheelEvent.isTrusted,Touch.radiusX
+,PointerEvent.clientY,Touch.screenY,,,,,PointerEvent.target,,WheelEvent.keyCode,Touch.radiusY
+,PointerEvent.deltaX,TouchEvent.get target,,,,,PointerEvent.tiltX,,WheelEvent.pointerType,Touch.rotationAngle
+,PointerEvent.deltaY,TouchEvent.target,,,,,PointerEvent.tiltY,,WheelEvent.type,Touch.screenX
+,PointerEvent.deltaZ,TouchEvent.touches,,,,,PointerEvent.timeStamp,,,Touch.screenY
+,PointerEvent.detail,WheelEvent.deltaMode,,,,,PointerEvent.twist,,,TouchEvent.changedTouches
+,PointerEvent.isTrusted,WheelEvent.deltaX,,,,,PointerEvent.type,,,TouchEvent.timeStamp
+,PointerEvent.pageX,WheelEvent.deltaY,,,,,PointerEvent.which,,,TouchEvent.type
+,PointerEvent.pageY,WheelEvent.deltaZ,,,,,PointerEvent.width,,,TouchList.item
+,PointerEvent.pointerId,,,,,,WheelEvent.clientX,,,TouchList.length
+,PointerEvent.screenX,,,,,,WheelEvent.clientY,,,WheelEvent.button
+,PointerEvent.screenY,,,,,,WheelEvent.deltaMode,,,WheelEvent.offsetX
+,PointerEvent.target,,,,,,WheelEvent.deltaX,,,WheelEvent.offsetY
+,PointerEvent.timeStamp,,,,,,WheelEvent.deltaY,,,WheelEvent.pageX
+,PointerEvent.type,,,,,,WheelEvent.deltaZ,,,WheelEvent.pageY
+,PointerEvent.wheelDelta,,,,,,WheelEvent.isTrusted,,,WheelEvent.screenX
+,PointerEvent.which,,,,,,WheelEvent.movementX,,,WheelEvent.screenY
+,WheelEvent.button,,,,,,WheelEvent.movementY,,,WheelEvent.timeStamp
+,WheelEvent.clientX,,,,,,WheelEvent.pageX,,,WheelEvent.type
+,WheelEvent.clientY,,,,,,WheelEvent.pageY,,,
+,WheelEvent.deltaY,,,,,,WheelEvent.screenX,,,
+,WheelEvent.detail,,,,,,WheelEvent.screenY,,,
+,WheelEvent.isTrusted,,,,,,WheelEvent.target,,,
+,WheelEvent.pageX,,,,,,WheelEvent.type,,,
+,WheelEvent.pageY,,,,,,WheelEvent.which,,,
+,WheelEvent.screenX,,,,,,,,,
+,WheelEvent.screenY,,,,,,,,,
+,WheelEvent.target,,,,,,,,,
+,WheelEvent.timeStamp,,,,,,,,,
+,WheelEvent.type,,,,,,,,,
+,WheelEvent.which,,,,,,,,,
+,Touch.screenX,,,,,,,,,
+,Touch.screenY,,,,,,,,,
+,Touch.radiusX,,,,,,,,,
+,Touch.radiusY,,,,,,,,,
+,Touch.identifier,,,,,,,,,
+,Touch.pageX,,,,,,,,,
+,Touch.pageY,,,,,,,,,
+,Touch.clientX,,,,,,,,,
+,Touch.clientY,,,,,,,,,
+,Touch.force,,,,,,,,,
+,TouchEvent.changedTouches,,,,,,,,,
+,TouchEvent.isTrusted,,,,,,,,,
+,TouchEvent.target,,,,,,,,,
+,TouchEvent.timeStamp,,,,,,,,,
+,TouchEvent.type,,,,,,,,,
+,TouchList.length,,,,,,,,,
