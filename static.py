@@ -525,6 +525,24 @@ def findMaxFPScore(nodes):
             index = i
     return max, nodes[index]['fp_apis'] if index != -1 else []
 
+def calculateAccessCount(APIs):
+    behavioral_access_counts = {}
+    fingeprinting_access_counts = {}
+    for API in APIs:
+        api = API['API']
+        if api in behavioral_sources:
+            if api in behavioral_access_counts:
+                behavioral_access_counts[api] += 1
+            else:
+                behavioral_access_counts[api] = 1
+        elif api in browser_fingerprinting_sources:
+            if api in fingeprinting_access_counts:
+                fingeprinting_access_counts[api] += 1
+            else:
+                fingeprinting_access_counts[api] = 1
+
+    return behavioral_access_counts, fingeprinting_access_counts
+
 
 def analysis_method(id, url, code, APIs, write_cursor, write_conn, count, lock, write_queue):
     #Ignore scripts belonging to the consent-o-matic extension and devtools
@@ -548,6 +566,8 @@ def analysis_method(id, url, code, APIs, write_cursor, write_conn, count, lock, 
         'behavioral_source_apis': [],
         'behavioral_source_api_count': 0,
         'fingerprinting_source_api_count': 0,
+        'behavioral_apis_access_count' : {},
+        'fingerprinting_api_access_count': {},
         'graph_construction_failure': False,
         'dataflow_to_sink': False,
         'apis_going_to_sink': {},
@@ -564,6 +584,7 @@ def analysis_method(id, url, code, APIs, write_cursor, write_conn, count, lock, 
         write_code_to_file(code, filename)
         source_APIs = filter_sources(APIs)
         sink_APIs = filter_sinks(APIs)
+        insertion_data['behavioral_apis_access_count'], insertion_data['fingerprinting_api_access_count'] = calculateAccessCount(APIs)
 
         insertion_data['attached_listeners'] = findEventListenersAttached(APIs)
         insertion_data['behavioral_source_apis'], insertion_data['fingerprinting_source_apis'] = getAllSourceAPIs(source_APIs)
@@ -756,6 +777,8 @@ def analyze():
             behavioral_source_apis JSONB,
             behavioral_source_api_count FLOAT,
             fingerprinting_source_api_count FLOAT,
+            behavioral_apis_access_count JSONB',
+            fingerprinting_api_access_count JSONB,
             graph_construction_failure BOOLEAN,
             dataflow_to_sink BOOLEAN,
             apis_going_to_sink JSONB
