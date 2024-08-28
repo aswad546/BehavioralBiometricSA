@@ -1,0 +1,77 @@
+
+\documentclass{article}
+\usepackage{booktabs}  % For professional looking tables
+\usepackage{makecell}  % For wrapping text in cells
+
+\begin{document}
+
+\section*{API Analysis between ClarityJS and Other Scripts}
+
+\subsection*{1. Overlapping APIs}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|}
+\hline
+\textbf{APIs Overlapping with Other Scripts} \\
+\hline
+ClipboardEvent.composed \\
+ClipboardEvent.timeStamp \\
+Event.composed \\
+Event.target \\
+Event.timeStamp \\
+InputEvent.composed \\
+InputEvent.timeStamp \\
+InputEvent.view \\
+MouseEvent.composed \\
+MouseEvent.composedPath \\
+MouseEvent.pageX \\
+MouseEvent.pageY \\
+MouseEvent.target \\
+MouseEvent.timeStamp \\
+PointerEvent.button \\
+PointerEvent.composed \\
+PointerEvent.composedPath \\
+PointerEvent.detail \\
+PointerEvent.isTrusted \\
+PointerEvent.pageX \\
+PointerEvent.pageY \\
+PointerEvent.timeStamp \\
+TouchEvent.changedTouches \\
+TouchEvent.target \\
+TouchEvent.timeStamp \\
+WheelEvent.pageX \\
+WheelEvent.pageY \\
+WheelEvent.timeStamp \\
+
+\hline
+\end{tabular}
+\caption{List of APIs that overlap between ClarityJS and other scripts.}
+\end{table}
+
+\newpage
+
+\subsection*{2. Unique APIs to ClarityJS}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|}
+\hline
+\textbf{APIs Unique to ClarityJS} \\
+\hline
+ClipboardEvent.composedPath \\
+InputEvent.composedPath \\
+MouseEvent.view \\
+PointerEvent.view \\
+TouchEvent.composed \\
+TouchEvent.view \\
+WheelEvent.composed \\
+WheelEvent.composedPath \\
+WheelEvent.view \\
+
+\hline
+\end{tabular}
+\caption{List of APIs that are unique to ClarityJS and not found in any other script.}
+\end{table}
+
+\end{document}

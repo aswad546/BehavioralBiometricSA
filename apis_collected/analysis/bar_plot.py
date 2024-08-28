@@ -32,7 +32,14 @@ fig = px.bar(
 )
 
 # Step 6: Sort the x-axis based on the sorted 'API' order
-fig.update_layout(xaxis={'categoryorder':'total descending'})
+fig.update_layout(
+    xaxis={ 'tickfont': dict(size=18) },  # Increase the font size of the x-axis tick labels,
+    font=dict(size=18),  # Increase the font size for all text elements
+    title=dict(font=dict(size=30)),  # Increase the font size of the title
+    xaxis_title=dict(font=dict(size=24)),  # Increase the font size of the x-axis title
+    yaxis_title=dict(font=dict(size=20)),  # Increase the font size of the y-axis title
+    legend=dict(font=dict(size=25))  # Increase the font size of the legend
+)
 
 # Step 7: Save and display the plot
 fig.write_image('plots/top_30_api_frequency_colored_bar_plot.png', format='png', width=1200, height=600)
