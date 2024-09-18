@@ -1,0 +1,434 @@
+{
+    "AudioContext.baseLatency": [
+        "AudioContext.baseLatency"
+    ],
+    "BaseAudioContext.currentTime": [
+        "BaseAudioContext.currentTime",
+        "OfflineAudioContext.currentTime",
+        "AudioContext.currentTime"
+    ],
+    "AudioContext.outputLatency": [
+        "AudioContext.outputLatency"
+    ],
+    "BaseAudioContext.sampleRate": [
+        "BaseAudioContext.sampleRate",
+        "OfflineAudioContext.sampleRate",
+        "AudioContext.sampleRate"
+    ],
+    "AudioNode.channelCount": [
+        "AudioNode.channelCount",
+        "DelayNode.channelCount",
+        "IIRFilterNode.channelCount",
+        "MediaElementAudioSourceNode.channelCount",
+        "AudioWorkletNode.channelCount",
+        "AnalyserNode.channelCount",
+        "PannerNode.channelCount",
+        "DynamicsCompressorNode.channelCount",
+        "MediaStreamAudioDestinationNode.channelCount",
+        "AudioScheduledSourceNode.channelCount",
+        "AudioBufferSourceNode.channelCount",
+        "ConstantSourceNode.channelCount",
+        "OscillatorNode.channelCount",
+        "AudioDestinationNode.channelCount",
+        "ConvolverNode.channelCount",
+        "MediaStreamAudioSourceNode.channelCount",
+        "ScriptProcessorNode.channelCount",
+        "ChannelMergerNode.channelCount",
+        "GainNode.channelCount",
+        "ChannelSplitterNode.channelCount",
+        "WaveShaperNode.channelCount",
+        "StereoPannerNode.channelCount",
+        "BiquadFilterNode.channelCount"
+    ],
+    "AudioDestinationNode.maxChannelCount": [
+        "AudioDestinationNode.maxChannelCount"
+    ],
+    "AudioNode.numberOfInputs": [
+        "AudioNode.numberOfInputs",
+        "DelayNode.numberOfInputs",
+        "IIRFilterNode.numberOfInputs",
+        "MediaElementAudioSourceNode.numberOfInputs",
+        "AudioWorkletNode.numberOfInputs",
+        "AnalyserNode.numberOfInputs",
+        "PannerNode.numberOfInputs",
+        "DynamicsCompressorNode.numberOfInputs",
+        "MediaStreamAudioDestinationNode.numberOfInputs",
+        "AudioScheduledSourceNode.numberOfInputs",
+        "AudioBufferSourceNode.numberOfInputs",
+        "ConstantSourceNode.numberOfInputs",
+        "OscillatorNode.numberOfInputs",
+        "AudioDestinationNode.numberOfInputs",
+        "ConvolverNode.numberOfInputs",
+        "MediaStreamAudioSourceNode.numberOfInputs",
+        "ScriptProcessorNode.numberOfInputs",
+        "ChannelMergerNode.numberOfInputs",
+        "GainNode.numberOfInputs",
+        "ChannelSplitterNode.numberOfInputs",
+        "WaveShaperNode.numberOfInputs",
+        "StereoPannerNode.numberOfInputs",
+        "BiquadFilterNode.numberOfInputs"
+    ],
+    "AudioNode.numberOfOutputs": [
+        "AudioNode.numberOfOutputs",
+        "DelayNode.numberOfOutputs",
+        "IIRFilterNode.numberOfOutputs",
+        "MediaElementAudioSourceNode.numberOfOutputs",
+        "AudioWorkletNode.numberOfOutputs",
+        "AnalyserNode.numberOfOutputs",
+        "PannerNode.numberOfOutputs",
+        "DynamicsCompressorNode.numberOfOutputs",
+        "MediaStreamAudioDestinationNode.numberOfOutputs",
+        "AudioScheduledSourceNode.numberOfOutputs",
+        "AudioBufferSourceNode.numberOfOutputs",
+        "ConstantSourceNode.numberOfOutputs",
+        "OscillatorNode.numberOfOutputs",
+        "AudioDestinationNode.numberOfOutputs",
+        "ConvolverNode.numberOfOutputs",
+        "MediaStreamAudioSourceNode.numberOfOutputs",
+        "ScriptProcessorNode.numberOfOutputs",
+        "ChannelMergerNode.numberOfOutputs",
+        "GainNode.numberOfOutputs",
+        "ChannelSplitterNode.numberOfOutputs",
+        "WaveShaperNode.numberOfOutputs",
+        "StereoPannerNode.numberOfOutputs",
+        "BiquadFilterNode.numberOfOutputs"
+    ],
+    "BatteryManager.charging": [
+        "BatteryManager.charging"
+    ],
+    "BatteryManager.chargingTime": [
+        "BatteryManager.chargingTime"
+    ],
+    "BatteryManager.dischargingTime": [
+        "BatteryManager.dischargingTime"
+    ],
+    "BatteryManager.level": [
+        "BatteryManager.level"
+    ],
+    "History.length": [
+        "History.length"
+    ],
+    "HTMLElement.offsetHeight": [
+        "HTMLElement.offsetHeight",
+        "HTMLFrameSetElement.offsetHeight",
+        "HTMLSpanElement.offsetHeight",
+        "HTMLOptionElement.offsetHeight",
+        "HTMLTableColElement.offsetHeight",
+        "HTMLButtonElement.offsetHeight",
+        "HTMLShadowElement.offsetHeight",
+        "HTMLAreaElement.offsetHeight",
+        "HTMLFormElement.offsetHeight",
+        "HTMLInputElement.offsetHeight",
+        "HTMLHeadElement.offsetHeight",
+        "HTMLSourceElement.offsetHeight",
+        "HTMLTableRowElement.offsetHeight",
+        "HTMLDirectoryElement.offsetHeight",
+        "HTMLDivElement.offsetHeight",
+        "HTMLEmbedElement.offsetHeight",
+        "HTMLQuoteElement.offsetHeight",
+        "HTMLDialogElement.offsetHeight",
+        "HTMLLinkElement.offsetHeight",
+        "HTMLDetailsElement.offsetHeight",
+        "HTMLMetaElement.offsetHeight",
+        "HTMLLegendElement.offsetHeight",
+        "HTMLHeadingElement.offsetHeight",
+        "HTMLMenuElement.offsetHeight",
+        "HTMLPortalElement.offsetHeight",
+        "HTMLTableElement.offsetHeight",
+        "HTMLBodyElement.offsetHeight",
+        "HTMLLabelElement.offsetHeight",
+        "HTMLModElement.offsetHeight",
+        "HTMLDataElement.offsetHeight",
+        "HTMLTrackElement.offsetHeight",
+        "HTMLTimeElement.offsetHeight",
+        "HTMLOptGroupElement.offsetHeight",
+        "HTMLOListElement.offsetHeight",
+        "HTMLPreElement.offsetHeight",
+        "HTMLDListElement.offsetHeight",
+        "HTMLCanvasElement.offsetHeight",
+        "HTMLTitleElement.offsetHeight",
+        "HTMLMapElement.offsetHeight",
+        "HTMLTextAreaElement.offsetHeight",
+        "HTMLOutputElement.offsetHeight",
+        "HTMLParagraphElement.offsetHeight",
+        "HTMLUListElement.offsetHeight",
+        "HTMLScriptElement.offsetHeight",
+        "HTMLBRElement.offsetHeight",
+        "HTMLTableCaptionElement.offsetHeight",
+        "HTMLContentElement.offsetHeight",
+        "HTMLDataListElement.offsetHeight",
+        "HTMLMediaElement.offsetHeight",
+        "HTMLAudioElement.offsetHeight",
+        "HTMLVideoElement.offsetHeight",
+        "HTMLBaseElement.offsetHeight",
+        "HTMLSelectElement.offsetHeight",
+        "HTMLIFrameElement.offsetHeight",
+        "HTMLTableCellElement.offsetHeight",
+        "HTMLFrameElement.offsetHeight",
+        "HTMLTableSectionElement.offsetHeight",
+        "HTMLProgressElement.offsetHeight",
+        "HTMLFieldSetElement.offsetHeight",
+        "HTMLLIElement.offsetHeight",
+        "HTMLTemplateElement.offsetHeight",
+        "HTMLUnknownElement.offsetHeight",
+        "HTMLHRElement.offsetHeight",
+        "HTMLPictureElement.offsetHeight",
+        "HTMLMarqueeElement.offsetHeight",
+        "HTMLFontElement.offsetHeight",
+        "HTMLObjectElement.offsetHeight",
+        "HTMLAnchorElement.offsetHeight",
+        "HTMLMeterElement.offsetHeight",
+        "HTMLHtmlElement.offsetHeight",
+        "HTMLStyleElement.offsetHeight",
+        "HTMLImageElement.offsetHeight",
+        "HTMLSlotElement.offsetHeight",
+        "HTMLParamElement.offsetHeight"
+    ],
+    "HTMLElement.offsetWidth": [
+        "HTMLElement.offsetWidth",
+        "HTMLFrameSetElement.offsetWidth",
+        "HTMLSpanElement.offsetWidth",
+        "HTMLOptionElement.offsetWidth",
+        "HTMLTableColElement.offsetWidth",
+        "HTMLButtonElement.offsetWidth",
+        "HTMLShadowElement.offsetWidth",
+        "HTMLAreaElement.offsetWidth",
+        "HTMLFormElement.offsetWidth",
+        "HTMLInputElement.offsetWidth",
+        "HTMLHeadElement.offsetWidth",
+        "HTMLSourceElement.offsetWidth",
+        "HTMLTableRowElement.offsetWidth",
+        "HTMLDirectoryElement.offsetWidth",
+        "HTMLDivElement.offsetWidth",
+        "HTMLEmbedElement.offsetWidth",
+        "HTMLQuoteElement.offsetWidth",
+        "HTMLDialogElement.offsetWidth",
+        "HTMLLinkElement.offsetWidth",
+        "HTMLDetailsElement.offsetWidth",
+        "HTMLMetaElement.offsetWidth",
+        "HTMLLegendElement.offsetWidth",
+        "HTMLHeadingElement.offsetWidth",
+        "HTMLMenuElement.offsetWidth",
+        "HTMLPortalElement.offsetWidth",
+        "HTMLTableElement.offsetWidth",
+        "HTMLBodyElement.offsetWidth",
+        "HTMLLabelElement.offsetWidth",
+        "HTMLModElement.offsetWidth",
+        "HTMLDataElement.offsetWidth",
+        "HTMLTrackElement.offsetWidth",
+        "HTMLTimeElement.offsetWidth",
+        "HTMLOptGroupElement.offsetWidth",
+        "HTMLOListElement.offsetWidth",
+        "HTMLPreElement.offsetWidth",
+        "HTMLDListElement.offsetWidth",
+        "HTMLCanvasElement.offsetWidth",
+        "HTMLTitleElement.offsetWidth",
+        "HTMLMapElement.offsetWidth",
+        "HTMLTextAreaElement.offsetWidth",
+        "HTMLOutputElement.offsetWidth",
+        "HTMLParagraphElement.offsetWidth",
+        "HTMLUListElement.offsetWidth",
+        "HTMLScriptElement.offsetWidth",
+        "HTMLBRElement.offsetWidth",
+        "HTMLTableCaptionElement.offsetWidth",
+        "HTMLContentElement.offsetWidth",
+        "HTMLDataListElement.offsetWidth",
+        "HTMLMediaElement.offsetWidth",
+        "HTMLAudioElement.offsetWidth",
+        "HTMLVideoElement.offsetWidth",
+        "HTMLBaseElement.offsetWidth",
+        "HTMLSelectElement.offsetWidth",
+        "HTMLIFrameElement.offsetWidth",
+        "HTMLTableCellElement.offsetWidth",
+        "HTMLFrameElement.offsetWidth",
+        "HTMLTableSectionElement.offsetWidth",
+        "HTMLProgressElement.offsetWidth",
+        "HTMLFieldSetElement.offsetWidth",
+        "HTMLLIElement.offsetWidth",
+        "HTMLTemplateElement.offsetWidth",
+        "HTMLUnknownElement.offsetWidth",
+        "HTMLHRElement.offsetWidth",
+        "HTMLPictureElement.offsetWidth",
+        "HTMLMarqueeElement.offsetWidth",
+        "HTMLFontElement.offsetWidth",
+        "HTMLObjectElement.offsetWidth",
+        "HTMLAnchorElement.offsetWidth",
+        "HTMLMeterElement.offsetWidth",
+        "HTMLHtmlElement.offsetWidth",
+        "HTMLStyleElement.offsetWidth",
+        "HTMLImageElement.offsetWidth",
+        "HTMLSlotElement.offsetWidth",
+        "HTMLParamElement.offsetWidth"
+    ],
+    "AudioBuffer.getChannelData": [
+        "AudioBuffer.getChannelData"
+    ],
+    "HTMLCanvasElement.toDataURL": [
+        "HTMLCanvasElement.toDataURL"
+    ],
+    "MediaDevices.enumerateDevices": [
+        "MediaDevices.enumerateDevices"
+    ],
+    "Navigator.appName": [
+        "Navigator.appName"
+    ],
+    "Navigator.appVersion": [
+        "Navigator.appVersion"
+    ],
+    "Navigator.buildID": [
+        "Navigator.buildID"
+    ],
+    "Navigator.cookieEnabled": [
+        "Navigator.cookieEnabled"
+    ],
+    "Navigator.deviceMemory": [
+        "Navigator.deviceMemory"
+    ],
+    "Navigator.doNotTrack": [
+        "Navigator.doNotTrack"
+    ],
+    "Navigator.hardwareConcurrency": [
+        "Navigator.hardwareConcurrency"
+    ],
+    "Navigator.language": [
+        "Navigator.language"
+    ],
+    "Navigator.languages": [
+        "Navigator.languages"
+    ],
+    "Navigator.maxTouchPoints": [
+        "Navigator.maxTouchPoints"
+    ],
+    "Navigator.mimeTypes": [
+        "Navigator.mimeTypes"
+    ],
+    "Navigator.oscpu": [
+        "Navigator.oscpu"
+    ],
+    "Navigator.platform": [
+        "Navigator.platform"
+    ],
+    "Navigator.plugins": [
+        "Navigator.plugins"
+    ],
+    "Navigator.product": [
+        "Navigator.product"
+    ],
+    "Navigator.productSub": [
+        "Navigator.productSub"
+    ],
+    "Navigator.userAgent": [
+        "Navigator.userAgent"
+    ],
+    "Navigator.vendor": [
+        "Navigator.vendor"
+    ],
+    "Navigator.vendorSub": [
+        "Navigator.vendorSub"
+    ],
+    "Screen.availHeight": [
+        "Screen.availHeight"
+    ],
+    "Screen.availWidth": [
+        "Screen.availWidth"
+    ],
+    "Screen.colorDepth": [
+        "Screen.colorDepth"
+    ],
+    "Screen.height": [
+        "Screen.height"
+    ],
+    "Screen.pixelDepth": [
+        "Screen.pixelDepth"
+    ],
+    "Screen.width": [
+        "Screen.width"
+    ],
+    "VisualViewport.height": [
+        "VisualViewport.height"
+    ],
+    "VisualViewport.width": [
+        "VisualViewport.width"
+    ],
+    "VisualViewport.offsetLeft": [
+        "VisualViewport.offsetLeft"
+    ],
+    "VisualViewport.offsetTop": [
+        "VisualViewport.offsetTop"
+    ],
+    "VisualViewport.PageLeft": [
+        "VisualViewport.PageLeft"
+    ],
+    "VisualViewport.pageTop": [
+        "VisualViewport.pageTop"
+    ],
+    "VisualViewport.scale": [
+        "VisualViewport.scale"
+    ],
+    "WebGLRenderingContext.getParameter": [
+        "WebGLRenderingContext.getParameter"
+    ],
+    "WebGLShaderPrecisionFormat.precision": [
+        "WebGLShaderPrecisionFormat.precision"
+    ],
+    "WebGLShaderPrecisionFormat.rangeMax": [
+        "WebGLShaderPrecisionFormat.rangeMax"
+    ],
+    "WebGLShaderPrecisionFormat.rangeMin": [
+        "WebGLShaderPrecisionFormat.rangeMin"
+    ],
+    "Window.devicePixelRatio": [
+        "Window.devicePixelRatio"
+    ],
+    "Window.innerHeight": [
+        "Window.innerHeight"
+    ],
+    "Window.innerWidth": [
+        "Window.innerWidth"
+    ],
+    "Window.outerHeight": [
+        "Window.outerHeight"
+    ],
+    "Window.outerWidth": [
+        "Window.outerWidth"
+    ],
+    "Window.pageXOffset": [
+        "Window.pageXOffset"
+    ],
+    "Window.pageYOffset": [
+        "Window.pageYOffset"
+    ],
+    "Window.screenLeft": [
+        "Window.screenLeft"
+    ],
+    "Window.screenTop": [
+        "Window.screenTop"
+    ],
+    "Window.screenX": [
+        "Window.screenX"
+    ],
+    "Window.screenY": [
+        "Window.screenY"
+    ],
+    "Window.scrollX": [
+        "Window.scrollX"
+    ],
+    "Window.scrollY": [
+        "Window.scrollY"
+    ],
+    "WorkerNavigator.platform": [
+        "WorkerNavigator.platform"
+    ],
+    "WorkerNavigator.userAgent": [
+        "WorkerNavigator.userAgent"
+    ],
+    "Storage.quota": [
+        "Storage.quota"
+    ],
+    "Storage.usage": [
+        "Storage.usage"
+    ],
+    "Permissions.state": [
+        "Permissions.state"
+    ]
+}
