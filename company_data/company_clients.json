@@ -1,0 +1,103 @@
+{
+  "BioCatch": [
+    "https://www1.bmo.com/banking/digital/login",
+    "https://internetbanking.tsb.co.uk/personal/logon/login/#/login",
+    "https://app.laybuy.com/sign-in",
+    "https://www.citi.com",
+    "https://www1.biz-ebanking.hangseng.com/portalserver/hase-gbb-prelogon/logon?lang=en_US&r=582470689",
+    "https://banco.itau.co/",
+    "https://www.openbank.es/",
+    "https://www.online-banking.business.hsbc.com.hk/portalserver/logon",
+    "https://authentication.td.com/uap-ui/?consumer=easyweb&locale=en_CA#/uap/login",
+    "https://www.lloydsbank.com/",
+    "https://www.halifax-online.co.uk",
+    "https://www.natwest.com/",
+    "https://www.bankofscotland.co.uk/",
+    "https://infinity.icicibank.com/corp/AuthenticationController?FORMSGROUP_ID__=AuthenticationFG&__START_TRAN_FLAG__=Y&FG_BUTTONS__=LOAD&ACTION.LOAD=Y&AuthenticationFG.LOGIN_FLAG=1&BANK_ID=ICI&ITM=nli_personalb_personal_login_btn&_gl=1*30xkeg*_ga*MTgzMDcxOTY5Ni4xNjIwMDM5NDU0*_ga_SKB78GHTFV*MTYyODIzNDM4NC43Ny4xLjE2MjgyMzQ1MDQuMjc.&_ga=2.169577317.558349428.1699007889-1511871104.1699007888&_gac=1.8201990.1697523963.EAIaIQobChMI-7jpvrn8gQMVt6lmAh1nywMHEAAYASAAEgKBxfD_BwE",
+    "https://www.onlinebanking.natwest.com/Default.aspx",
+    "https://login.anz.com/internetbanking",
+    "https://www.my.commbank.com.au/netbank/Logon/Logon.aspx?ei=mv_logon-NB"
+  ],
+  "Iovation (TransUnion)": [
+    "https://stake.com/?key=ON&country=CA&region=ON&dir=redirect&modal=restrictedRegion",
+    "https://www.upwork.com",
+    "https://www.usbank.com/index.html",
+    "https://www.jcpenney.com/cart/signin",
+    "https://www.expedia.ca/login?ckoflag=0&uurl=e3id%3Dredr%26rurl%3D%2F",
+    "https://member.neofinancial.com/login?skip_intro=true&brand=generic&nf_pp=PREMIUM&nf_cv=PX3FMGT&utm_medium=paid_ads&utm_source=googleadwords_int&utm_campaign=Branded&campaign_id=7784564304&utm_adset=Brand&adset_id=76774432730&matchtype=p&network=g&keyword=neobank&gad_source=1&_gl=1*12hk2xd*_up*MQ..*_ga*ODIzMDY5Nzc5LjE3MjI1MjQyOTY.*_ga_JVH8H9NKWL*MTcyMjUyNDI5Ni4xLjAuMTcyMjUyNDMwMi41NC4wLjA.&gclid=CjwKCAjw5Ky1BhAgEiwA5jGujn4ZvPkqSWGG3t1lRoJo6oqAq78-P2qG1LyAzMlccNZ_MxbFYJk8_RoCdGcQAvD_BwE",
+    "https://www.starbucks.ca/account/signin?ReturnUrl=%2F"
+  ],
+  "Nudata": [
+    "https://www.istockphoto.com/fr/join",
+    "https://www.singaporeair.com/en_UK/us/home?",
+    "https://app.chime.com/login",
+    "https://www.quill.com/Account/Login",
+    "https://www.earny.co/signup/login?r=1",
+    "https://www.ipko.pl/"
+  ],
+  "Neuro-Id": [
+    "https://id.biltrewards.com/login/enter-email/",
+    "https://www.joracredit.com/"
+  ],
+  "Behaviosec (LexisNexis ThreatMetrix Module)": [
+    "https://www.cibconline.cibc.com/ebm-resources/online-banking/client/index.html#/auth/signon?msgId=0008",
+    "https://www.rbcroyalbank.com/personal.html",
+    "https://www.marcus.com/us/en/login",
+    "https://www.johnvarvatos.com/login",
+    "https://internetbanking.tsb.co.uk/personal/logon/login/#/login",
+    "https://www.cinemark.com.bo/",
+    "https://online.simplii.com/ebm-resources/public/secure-key/simplii/client/web/index.html#/signon?skeyUUID=6c814d5e-c2ce-4e24-b8ef-198c42e682b0&lang=en",
+    "https://secure.citbank.com/CITConsumer/?USPrivacy=&addtlString=&tcString=&consentedDate=Fri%20Jul%2026%202024%2018:48:16%20GMT-0400%20(Eastern%20Daylight%20Time)&groups=C0002:0,C0004:0,C0001:1,C0003:0#/Login",
+    "https://www.healthsafe-id.com/rt/login/myuhc/en?TARGET=https%3A%2F%2Fwww.healthsafe-id.com%2Frt%2Fsecure%2Fauth%2Fmyuhc%2Fen%3Fresume%3D%2Fas%2FovfK7sOQRs%2Fresume%2Fas%2Fauthorization.ping%26spentity%3Dnull%26scope%3Dopenid%2520profile%26response_type%3Dcode%26pfidpadapterid%3DHsidNewUIOidc%26redirect_uri%3Dhttps%3A%2F%2Fmember.uhc.com%2Fone-portal%2Fprotected%2Foidc%2Fv1%2Fcallback%26portal%3Dmyuhc%26lang%3Den%26client_id%3Doneportal_hsid_prod&resume=%2Fas%2Fm1f8ooRWAQ%2Fresume%2Fas%2Fauthorization.ping&reason=0",
+    "https://www.avon.com/order/checkout?rep=ritakimble",
+    "https://account.booking.com/sign-in",
+    "https://connexion-mabanque.bnpparibas/login?"
+  ],
+  "Sardine.ai": [
+    "https://app.evergreenmoney.com/sign-in/",
+    "https://my.wealthsimple.com/app/saml/login?lang=en&locale=en_CA",
+    "https://login.blockchain.com/en/#/login?product=wallet"
+  ],
+  "Forter": [
+    "https://www.upwork.com",
+    "https://www.citizenwatch.com/ca/en/home/",
+    "https://www.wish.com",
+    "https://www.fiverr.com/login"
+  ],
+  "PingIdentity": [
+    "https://www.victoriassecret.com/ca/account/signin",
+    "https://hicmls.clareityiam.net/idp/login"
+  ],
+  "Accertify": [
+    "https://www.jcpenney.com/checkout/shipping",
+    "https://br.mytrip.com/rf/order-login",
+    "https://www.grubhub.com/login",
+    "https://www.starbucks.com/account/signin?ReturnUrl=%2F"
+  ],
+  "Bureau": [
+    "https://www.bureau.id/"
+  ],
+  "f5": [
+    "CRA Login page",
+    "wellsfargo 2022"
+  ],
+  "TypingDNA": [
+    "https://www.typingdna.com/demo-sametext.html"
+  ],
+  "Prove": [
+    "https://account.on.sportsbook.fanduel.ca (Unconfirmed)"
+  ],
+  "Human (PerimeterX)": [
+    "https://account.on.sportsbook.fanduel.ca"
+  ],
+  "ThreatMark": [
+    "https://login.sparkasse.at/sts/oauth/authorize?response_type=token&client_id=georgeclient&state="
+  ],
+  "Transmit Security": [
+    "https://app.ethoslife.com/q/goals",
+    "https://hb.illimitybank.com/login"
+  ],
+  "Darwinium": [
+    "https://www.asaas.com/login/auth?customerSignUpOriginChannel=DIGITAL_ACCOUNT_PAGE"
+  ]
+}
