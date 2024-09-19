@@ -15,17 +15,21 @@ def parse_apis(file_content):
     # Preprocess the file content to replace the unnecessary quotes and curly braces
     cleaned_content = file_content.strip('{}').replace('""', '"')
     
+    # Dictionary to track API call counts
+    api_count = {}
+    
     # Split the content by commas and extract API names (ignore the numeric prefixes)
-    api_list = set()
     for entry in cleaned_content.split('","'):
         # Each entry looks like "2072,Window.String", so split by comma
         if ',' in entry:
             api_name = entry.split(',')[1].strip()
-            api_list.add(api_name)
+            # Count the number of times each API appears
+            if api_name in api_count:
+                api_count[api_name] += 1
+            else:
+                api_count[api_name] = 1
     
-    return api_list
-
-
+    return api_count
 
 # Function to check if the file contains the APIs from fp_sources.json
 def check_apis_in_file(file_path, apis_to_check):
@@ -34,7 +38,9 @@ def check_apis_in_file(file_path, apis_to_check):
     
     # Parse APIs from the file and compare with APIs in fp_sources.json
     file_apis = parse_apis(file_content)
-    matching_apis = file_apis.intersection(apis_to_check)
+    
+    # Filter out only the APIs that are in the fp_sources.json list
+    matching_apis = {api: count for api, count in file_apis.items() if api in apis_to_check}
     
     return matching_apis
 
@@ -46,8 +52,6 @@ def process_api_files(directory, api_file_path, output_file_path):
     # Create a flattened set of APIs to check
     apis_to_check = set(api for sublist in api_data.values() for api in sublist)
 
-    # print(apis_to_check)
-    
     # Find all .apis files in the directory
     api_files = find_api_files(directory)
     
@@ -60,8 +64,8 @@ def process_api_files(directory, api_file_path, output_file_path):
         matching_apis = check_apis_in_file(file_path, apis_to_check)
         
         if matching_apis:
-            # Store the results for this file
-            results[api_file] = list(matching_apis)
+            # Store the results for this file, including the count of API calls
+            results[api_file] = matching_apis
     
     # Write the results to the output file in JSON format
     with open(output_file_path, 'w') as outfile:
@@ -76,7 +80,7 @@ if __name__ == "__main__":
     # Path to fp_sources.json file containing APIs
     api_file_path = "/home/vagrant/BehavioralBiometricSA/apis_collected/raw_apis/fp_sources.json"  
     # Output file to save the matching results
-    output_file_path = "fp_apis_per_company.json"  
+    output_file_path = "fp_apis_per_company_with_counts.json"  
 
     # Process the .apis files and generate the output
     process_api_files(directory, api_file_path, output_file_path)
