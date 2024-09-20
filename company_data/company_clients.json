@@ -37,7 +37,8 @@
   ],
   "Neuro-Id": [
     "https://id.biltrewards.com/login/enter-email/",
-    "https://www.joracredit.com/"
+    "https://www.joracredit.com/",
+   " https://www.coign.com/"
   ],
   "Behaviosec (LexisNexis ThreatMetrix Module)": [
     "https://www.cibconline.cibc.com/ebm-resources/online-banking/client/index.html#/auth/signon?msgId=0008",
@@ -51,7 +52,8 @@
     "https://www.healthsafe-id.com/rt/login/myuhc/en?TARGET=https%3A%2F%2Fwww.healthsafe-id.com%2Frt%2Fsecure%2Fauth%2Fmyuhc%2Fen%3Fresume%3D%2Fas%2FovfK7sOQRs%2Fresume%2Fas%2Fauthorization.ping%26spentity%3Dnull%26scope%3Dopenid%2520profile%26response_type%3Dcode%26pfidpadapterid%3DHsidNewUIOidc%26redirect_uri%3Dhttps%3A%2F%2Fmember.uhc.com%2Fone-portal%2Fprotected%2Foidc%2Fv1%2Fcallback%26portal%3Dmyuhc%26lang%3Den%26client_id%3Doneportal_hsid_prod&resume=%2Fas%2Fm1f8ooRWAQ%2Fresume%2Fas%2Fauthorization.ping&reason=0",
     "https://www.avon.com/order/checkout?rep=ritakimble",
     "https://account.booking.com/sign-in",
-    "https://connexion-mabanque.bnpparibas/login?"
+    "https://connexion-mabanque.bnpparibas/login?",
+    "https://retail.sc.com/in/nfs/login.htm?timeout=1"
   ],
   "Sardine.ai": [
     "https://app.evergreenmoney.com/sign-in/",
