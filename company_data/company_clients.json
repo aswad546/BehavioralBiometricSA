@@ -7,6 +7,7 @@
     "https://www1.biz-ebanking.hangseng.com/portalserver/hase-gbb-prelogon/logon?lang=en_US&r=582470689",
     "https://banco.itau.co/",
     "https://www.openbank.es/",
+    "https://www.bankofamerica.com/",
     "https://www.online-banking.business.hsbc.com.hk/portalserver/logon",
     "https://authentication.td.com/uap-ui/?consumer=easyweb&locale=en_CA#/uap/login",
     "https://www.lloydsbank.com/",
@@ -16,7 +17,20 @@
     "https://infinity.icicibank.com/corp/AuthenticationController?FORMSGROUP_ID__=AuthenticationFG&__START_TRAN_FLAG__=Y&FG_BUTTONS__=LOAD&ACTION.LOAD=Y&AuthenticationFG.LOGIN_FLAG=1&BANK_ID=ICI&ITM=nli_personalb_personal_login_btn&_gl=1*30xkeg*_ga*MTgzMDcxOTY5Ni4xNjIwMDM5NDU0*_ga_SKB78GHTFV*MTYyODIzNDM4NC43Ny4xLjE2MjgyMzQ1MDQuMjc.&_ga=2.169577317.558349428.1699007889-1511871104.1699007888&_gac=1.8201990.1697523963.EAIaIQobChMI-7jpvrn8gQMVt6lmAh1nywMHEAAYASAAEgKBxfD_BwE",
     "https://www.onlinebanking.natwest.com/Default.aspx",
     "https://login.anz.com/internetbanking",
-    "https://www.my.commbank.com.au/netbank/Logon/Logon.aspx?ei=mv_logon-NB"
+    "https://www.my.commbank.com.au/netbank/Logon/Logon.aspx?ei=mv_logon-NB",
+    "https://accweb.mouv.desjardins.com/identifiantunique/securite-garantie/authentification/auth/manuel?domaineVirtuel=desjardins&langueCible=en&navigMW=mm",
+    "https://auth.synchronybank.com/account/login",
+    "https://internetbanking.suncorpbank.com.au",
+    "https://banking.bendigobank.com.au/Logon/login.page",
+    "https://ib.nab.com.au/login",
+    "https://onlinebanking.mtb.com/",
+    "https://onlinebanking.nationwide.co.uk/AccessManagement/IdentifyCustomer/IdentifyCustomer",
+    "https://www.mercurycards.com/cards/#/",
+    "https://usdigital.bmo.com/www/#/login",
+    "https://bank.barclays.co.uk/olb/authlogin/loginAppContainer.do#/identification",
+    "https://online.mbna.co.uk/personal/logon/login.jsp",
+    "banking.westpac.com.au",
+    "https://online.macquarie.com.au/personal/#/"
   ],
   "Iovation (TransUnion)": [
     "https://stake.com/?key=ON&country=CA&region=ON&dir=redirect&modal=restrictedRegion",
@@ -25,7 +39,31 @@
     "https://www.jcpenney.com/cart/signin",
     "https://www.expedia.ca/login?ckoflag=0&uurl=e3id%3Dredr%26rurl%3D%2F",
     "https://member.neofinancial.com/login?skip_intro=true&brand=generic&nf_pp=PREMIUM&nf_cv=PX3FMGT&utm_medium=paid_ads&utm_source=googleadwords_int&utm_campaign=Branded&campaign_id=7784564304&utm_adset=Brand&adset_id=76774432730&matchtype=p&network=g&keyword=neobank&gad_source=1&_gl=1*12hk2xd*_up*MQ..*_ga*ODIzMDY5Nzc5LjE3MjI1MjQyOTY.*_ga_JVH8H9NKWL*MTcyMjUyNDI5Ni4xLjAuMTcyMjUyNDMwMi41NC4wLjA.&gclid=CjwKCAjw5Ky1BhAgEiwA5jGujn4ZvPkqSWGG3t1lRoJo6oqAq78-P2qG1LyAzMlccNZ_MxbFYJk8_RoCdGcQAvD_BwE",
-    "https://www.starbucks.ca/account/signin?ReturnUrl=%2F"
+    "https://www.starbucks.ca/account/signin?ReturnUrl=%2F",
+    "https://www.zoosk.com/login/registration",
+    "https://frankie4.com/",
+    "https://www.appliancesonline.com.au/",
+    "https://www.beautyheaven.com.au/",
+    "https://vortexoptics.com/",
+    "https://www.blackdiamondequipment.com/en_CA/",
+    "https://www.leupold.com/",
+    "https://www.viewsonic.com/",
+    "https://www.eharmony.ca/",
+    "https://www.classmates.com/",
+    "https://www.elitepartner.de/",
+    "https://www.parship.de/",
+    "https://rab.equipment/",
+    "https://www.annsummers.com/",
+    "https://www.josephjoseph.com/",
+    "https://www.meccabingo.com/#login",
+    "https://www.flirt4free.com/",
+    "https://www.jacamo.co.uk/",
+    "https://www.jdwilliams.co.uk/",
+    "https://www.simplybe.co.uk/",
+    "https://access.creditonebank.com/",
+    "https://www.midcountry.bank/login/",
+    "https://web6.secureinternetbank.com/PBI_PBI1151/Login/041209080"
+
   ],
   "Nudata": [
     "https://www.istockphoto.com/fr/join",
@@ -33,7 +71,8 @@
     "https://app.chime.com/login",
     "https://www.quill.com/Account/Login",
     "https://www.earny.co/signup/login?r=1",
-    "https://www.ipko.pl/"
+    "https://www.ipko.pl/",
+    "https://account.hrblock.com/"
   ],
   "Neuro-Id": [
     "https://id.biltrewards.com/login/enter-email/",
@@ -58,7 +97,8 @@
   "Sardine.ai": [
     "https://app.evergreenmoney.com/sign-in/",
     "https://my.wealthsimple.com/app/saml/login?lang=en&locale=en_CA",
-    "https://login.blockchain.com/en/#/login?product=wallet"
+    "https://login.blockchain.com/en/#/login?product=wallet", 
+    "https://stockx.com/"
   ],
   "Forter": [
     "https://www.upwork.com",
@@ -74,7 +114,6 @@
     "https://www.jcpenney.com/checkout/shipping",
     "https://br.mytrip.com/rf/order-login",
     "https://www.grubhub.com/login",
-    
     "https://www.starbucks.com/account/signin?ReturnUrl=%2F"
   ],
   "Bureau": [
@@ -82,7 +121,8 @@
   ],
   "f5": [
     "Canada Revenue Agency Login page (URL not copyable)",
-    "wellsfargo 2022 (Missing from webarchive)"
+    "wellsfargo 2022 (Missing from webarchive)",
+    "https://www.target.com/"
   ],
   "TypingDNA": [
     "https://www.typingdna.com/demo-sametext.html"
@@ -102,5 +142,9 @@
   ],
   "Darwinium": [
     "https://www.asaas.com/login/auth?customerSignUpOriginChannel=DIGITAL_ACCOUNT_PAGE"
+  ],
+  "Feedzai": [
+    "https://www.cajamar.es/es/particulares/productos-y-servicios/banca-a-distancia/",
+    "https://portal.kutxabank.es/cs/Satellite/kb/en/private-customers/corporative-information"
   ]
 }
