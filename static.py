@@ -760,6 +760,7 @@ def analyze():
         cursor.itersize = 1000  # chunk size
 
         create_table_query = '''
+        DROP TABLE IF EXISTS multicore_static_info;
         CREATE TABLE IF NOT EXISTS multicore_static_info (
             script_id SERIAL,
             script_url TEXT,
@@ -777,7 +778,7 @@ def analyze():
             behavioral_source_apis JSONB,
             behavioral_source_api_count FLOAT,
             fingerprinting_source_api_count FLOAT,
-            behavioral_apis_access_count JSONB',
+            behavioral_apis_access_count JSONB,
             fingerprinting_api_access_count JSONB,
             graph_construction_failure BOOLEAN,
             dataflow_to_sink BOOLEAN,
@@ -787,7 +788,7 @@ def analyze():
 
         write_cursor.execute(create_table_query)
         write_conn.commit()
-        print("Table 'multicore_static_info' created successfully or already exists.")
+        print("Table 'multicore_static_info' created successfully.")
         
         
 

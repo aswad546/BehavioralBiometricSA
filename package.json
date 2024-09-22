@@ -9,6 +9,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "escodegen": "^2.1.0",
     "espree": "^10.1.0",
     "esprima": "^4.0.1",
     "esprima-next": "^6.0.3",
