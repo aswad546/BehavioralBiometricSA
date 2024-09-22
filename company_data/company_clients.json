@@ -10,7 +10,7 @@
     "https://www.bankofamerica.com/",
     "https://www.online-banking.business.hsbc.com.hk/portalserver/logon",
     "https://authentication.td.com/uap-ui/?consumer=easyweb&locale=en_CA#/uap/login",
-    "https://www.lloydsbank.com/",
+    "https://online.lloydsbank.co.uk/personal/logon/login.jsp",
     "https://www.halifax-online.co.uk",
     "https://www.natwest.com/",
     "https://www.bankofscotland.co.uk/",
@@ -62,7 +62,8 @@
     "https://www.simplybe.co.uk/",
     "https://access.creditonebank.com/",
     "https://www.midcountry.bank/login/",
-    "https://web6.secureinternetbank.com/PBI_PBI1151/Login/041209080"
+    "https://web6.secureinternetbank.com/PBI_PBI1151/Login/041209080",
+    "https://www.westernunion.com/ca/en/web/user/login"
 
   ],
   "Nudata": [
@@ -98,7 +99,8 @@
     "https://app.evergreenmoney.com/sign-in/",
     "https://my.wealthsimple.com/app/saml/login?lang=en&locale=en_CA",
     "https://login.blockchain.com/en/#/login?product=wallet", 
-    "https://stockx.com/"
+    "https://stockx.com/",
+    "https://my.wealthsimple.com/app/login?locale=en-ca"
   ],
   "Forter": [
     "https://www.upwork.com",
@@ -146,5 +148,12 @@
   "Feedzai": [
     "https://www.cajamar.es/es/particulares/productos-y-servicios/banca-a-distancia/",
     "https://portal.kutxabank.es/cs/Satellite/kb/en/private-customers/corporative-information"
+  ],
+  "DataVisor": [
+    "www.airasia.com"
+  ],
+  "CallSign": [
+    "https://wise.com/login",
+    "https://online.sainsburysbank.co.uk/servicing/signin"
   ]
 }
