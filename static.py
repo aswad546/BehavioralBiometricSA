@@ -7,6 +7,8 @@ import concurrent.futures
 from itertools import count
 import time
 from multiprocessing import Manager
+import argparse  # Added for command-line argument handling
+import pandas as pd  # For exporting to CSV
 
 
 # Database connection parameters
@@ -15,337 +17,29 @@ port = '5434'  # The port the database listens on
 dbname = 'vv8_backend'  # Database name
 user = 'vv8'  # Username
 password = 'vv8'  # Password
-
 behavioral_sources = [
-    'MouseEvent.screenX', 
-    'MouseEvent.screenY', 
-    'MouseEvent.isTrusted',
-    'MouseEvent.currentTarget',
-    'MouseEvent.type',
-    'MouseEvent.movementX',
-    'MouseEvent.movementY',
-    'MouseEvent.clientX',
-    'MouseEvent.clientY',
-    'MouseEvent.pageX',
-    'MouseEvent.pageY',
-    'MouseEvent.button',
-    'MouseEvent.buttons',
-    'MouseEvent.target',
-    'MouseEvent.which',
-    'MouseEvent.detail',
-    'MouseEvent.relatedTarget',
-    'MouseEvent.toElement',
-    'MouseEvent.timeStamp',
-    'MouseEvent.sourceCapabilities',
-    'MouseEvent.srcElement',
-    'MouseEvent.offsetX',
-    'MouseEvent.offsetY',
-    'PointerEvent.screenX',
-    'PointerEvent.screenY',
-    'PointerEvent.isTrusted',
-    'PointerEvent.currentTarget',
-    'PointerEvent.pointerId',
-    'PointerEvent.type',
-    'PointerEvent.movementX',
-    'PointerEvent.movementY',
-    'PointerEvent.pageX',
-    'PointerEvent.pageY',
-    'PointerEvent.clientX',
-    'PointerEvent.clientY',
-    'PointerEvent.which', 
-    'PointerEvent.target',
-    'PointerEvent.button',
-    'PointerEvent.timeStamp',
-    'PointerEvent.getCoalescedEvents',
-    'PointerEvent.pointerType',
-    'PointerEvent.detail',
-    'PointerEvent.srcElement',
-    'PointerEvent.offsetX',
-    'PointerEvent.offsetY',
-    'WheelEvent.offsetX',
-    'WheelEvent.offsetY',
-    'WheelEvent.screenX',
-    'WheelEvent.screenY',
-    'WheelEvent.pageX',
-    'WheelEvent.pageY',
-    'WheelEvent.detail',
-    'WheelEvent.isTrusted',
-    'WheelEvent.type',
-    'WheelEvent.target',
-    'WheelEvent.clientX',
-    'WheelEvent.button',
-    'WheelEvent.timeStamp',
-    'WheelEvent.deltaX',
-    'WheelEvent.deltaY',
-    'WheelEvent.deltaZ',
-    'WheelEvent.deltaMode',
-    'WheelEvent.which',
-    'KeyboardEvent.which', 
-    'KeyboardEvent.target', 
-    'KeyboardEvent.keyCode',
-    'KeyboardEvent.code',
-    'KeyboardEvent.key',
-    'KeyboardEvent.type',
-    'KeyboardEvent.location',
-    'KeyboardEvent.ctrlKey',
-    'KeyboardEvent.shiftKey',
-    'KeyboardEvent.isTrusted',
-    'KeyboardEvent.metaKey',
-    'KeyboardEvent.altKey',
-    'KeyboardEvent.repeat',
-    'KeyboardEvent.isComposing',
-    'KeyboardEvent.srcElement',
-    'KeyboardEvent.timeStamp',
-    'FocusEvent.which',
-    'FocusEvent.isTrusted'
-    'FocusEvent.type',
-    'FocusEvent.target',
-    'FocusEvent.srcElement',
-    'FocusEvent.relatedTarget',
-    'FocusEvent.timeStamp',
-    'Touch.identifier',
-    'Touch.pageX',
-    'Touch.pageY',
-    'Touch.radiusX',
-    'Touch.radiusY',
-    'Touch.screenX',
-    'Touch.screenY',
-    'Touch.clientX',
-    'Touch.clientY',
-    'Touch.force',
-    'Touch.rotationAngle',
-    'TouchEvent.touches',
-    'TouchEvent.target',
-    'TouchEvent.which',
-    'TouchEvent.isTrusted',
-    'TouchEvent.timeStamp',
-    'TouchEvent.type',
-    'TouchEvent.changedTouches',
-    'ClipboardEvent.target',
-    'ClipboardEvent.type',
-    'ClipboardEvent.clipboardData',
-    'ClipboardEvent.srcElement',
-    'ClipboardEvent.timeStamp',
-    'TextEvent.type',
-    'TextEvent.timeStamp',
-    'InputEvent.target',
-]
+    'CompositionEvent', 
+    'TouchEvent', 
+    'PointerEvent', 
+    'TextEvent', 
+    'FocusEvent', 
+    'MouseEvent', 
+    'InputEvent', 
+    'WheelEvent', 
+    'DragEvent', 
+    'KeyboardEvent',
+    'Touch',
+    'DeviceMotionEventAcceleration',
+    'DeviceMotionEventRotationRate',
+    'DeviceMotionEvent',
+    'DeviceOrientationEvent'
+    ]
 ####################################
-browser_fingerprinting_sources = [
-    'BatteryManager.chargingTime',
-    'BatteryManager.level',
-    'BatteryManager.charging',
-    'BatteryManager.dischargingTime',
-    
-    'DynamicsCompressorNode.reduction',
-    'DynamicsCompressorNode.attack',
-    'DynamicsCompressorNode.release'
-    'DynamicsCompressorNode.ratio',
-    'DynamicsCompressorNode.threshold',
-    'DynamicsCompressorNode.knee',
-    'DynamicsCompressorNode.connect',
-    
-    'MemoryInfo.usedJSHeapSize',
-    'MemoryInfo.totalJSHeapSize',
-    'MemoryInfo.jsHeapSizeLimit',
-    'MimeType.type',
-    'MimeType.suffixes',
-    
-    'Window.devicePixelRatio',
-    'Window.requestAnimationFrame',
-    'Window.innerWidth',
-    'Window.innerHeight',
-    'Window.webkitRequestFileSystem',
-    'Window.outerWidth',
-    'Window.outerHeight',
-    'Window.navigator',
-    'Window.pageXOffset',
-    'Window.pageYOffset',
-    'Window.screenLeft',
-    'Window.screenTop',
-    'Window.screenX',
-    'Window.screenY',
-    'Window.scrollX',
-    'Window.scrollY',
+browser_fingerprinting_sources = []
+with open('/home/vagrant/BehavioralBiometricSA/fp_apis.txt', 'r') as file:
+    browser_fingerprinting_sources = [line.strip() for line in file.readlines()]
 
 
-    
-    'DOMRect.x',
-    'DOMRect.top',
-    'DOMRect.left',
-    'DOMRect.right',
-    'DOMRect.bottom',
-
-    'Plugin.length',
-    'Plugin.name',
-    'Plugin.description',
-    'Plugin.filename',
-    'PluginArray.length',
-    'PluginArray.item',
-    'AudioBuffer.getChannelData',
-    'NavigatorUAData.mobile',
-    'NavigatorUAData.getHighEntropyValues',
-    
-    'HTMLAudioElement.canPlayType',
-    'HTMLVideoElement.canPlayType',
-    
-    'WebGLRenderingContext.getParameter', 
-    'WebGL2RenderingContext.getParameter',
-    'WebGL2RenderingContext.getExtension',
-    'WebGLRenderingContext.getExtension',
-    'WebGLRenderingContext.createBuffer',
-    'WebGLRenderingContext.getContextAttributes',
-    'WebGLRenderingContext.clearColor',
-    'WebGLRenderingContext.getAttribLocation',
-    'WebGLRenderingContext.getUniformLocation',
-    'WebGLRenderingContext.bufferData',
-    'WebGLRenderingContext.shaderSource',
-    'WebGLRenderingContext.vertexAttribPointer',
-    'WebGLRenderingContext.attachShader',
-    'WebGLRenderingContext.compileShader',
-    'WebGLRenderingContext.canvas',
-
-    'WebGLShaderPrecisionFormat.precision',
-    'WebGLShaderPrecisionFormat.rangeMax',
-    'WebGLShaderPrecisionFormat.rangeMin',
-
-    'CanvasRenderingContext2D.measureText',
-    'CanvasRenderingContext2D.fillStyle',
-    'CanvasRenderingContext2D.isPointInPath',
-    'CanvasRenderingContext2D.fillRect',
-    'CanvasRenderingContext2D.font',
-    'CanvasRenderingContext2D.textBaseline',
-    'CanvasRenderingContext2D.fill',
-    'CanvasRenderingContext2D.fillText',
-    'CanvasRenderingContext2D.arc',
-    'CanvasRenderingContext2D.beginPath',
-    'CanvasRenderingContext2D.rect',
-    'CanvasRenderingContext2D.closePath',
-    
-    'Screen.width',
-    'Screen.height',
-    'Screen.availWidth',
-    'Screen.availHeight',
-    'Screen.availLeft',
-    'Screen.availTop',
-    'Screen.colorDepth',
-    'Screen.pixelDepth',
-
-    'HTMLDocument.cookie',
-    'HTMLCanvasElement.style',
-    'HTMLCanvasElement.width',
-    'HTMLCanvasElement.height',
-    'HTMLCanvasElement.getContext',
-    'HTMLCanvasElement.toDataUrl',
-
-    'InputDeviceCapabilities.firesTouchEvents',
-    
-    'Navigator.userActivation',
-    'Navigator.mediaSession',
-    'Navigator.doNotTrack',
-    'Navigator.clipboard',
-    'Navigator.gpu',
-    'Navigator.serial',
-    'Navigator.javaEnabled',
-    'Navigator.wakeLock',
-    'Navigator.keyboard',
-    'Navigator.presentation',
-    'Navigator.webdriver',
-    'Navigator.hid',
-    'Navigator.bluetooth',
-    'Navigator.connection',
-    'Navigator.geolocation',
-    'Navigator.plugins',
-    'Navigator.product',
-    'Navigator.getGamepads',
-    'Navigator.storage',
-    'Navigator.vendor',
-    'Navigator.vendorSub',
-    'Navigator.onLine',
-    'Navigator.serial',
-    'Navigator.vibrate',
-    'Navigator.platform',
-    'Navigator.userAgent',
-    'Navigator.language', 
-    'Navigator.mimeTypes',
-    'Navigator.languages',
-    'Navigator.getBattery',
-    'Navigator.appName',
-    'Navigator.appVersion',
-    'Navigator.productSub',
-    'Navigator.appCodeName',
-    'Navigator.buildID',
-    'Navigator.mediaDevices',
-    'Navigator.cookieEnabled',
-    'Navigator.userAgentData',
-    'Navigator.maxTouchPoints',
-    'Navigator.hardwareConcurrency',
-    'Navigator.webkitTemporaryStorage',
-    'Navigator.webkitPersistentStorage',
-    'Navigator.getInstalledRelatedApps',
-    'Navigator.webkitGetUserMedia',
-    'Navigator.oscpu',
-
-    'WorkerNavigator.userAgent',
-    'WorkerNavigator.platform',
-
-    'VisualViewport.height',
-    'VisualViewport.offsetLeft',
-    'VisualViewport.offsetTop',
-    'VisualViewport.pageLeft',
-    'VisualViewport.pageTop',
-    'VisualViewport.scale',
-    'VisualViewport.width',
-
-    'XMLDocument.location',
-
-    'Storage.quota',
-    'Storage.usage',
-
-    'OfflineAudioContext.baseLatency'
-    'OfflineAudioContext.startRendering',
-    'OfflineAudioContext.destination',
-    'OfflineAudioContext.currentTime',
-    'OfflineAudioContext.createOscillator',
-    'OfflineAudioContext.state',
-    'OfflineAudioContext.createDynamicsCompressor',
-    'OfflineAudioContext.sampleRate',
-    
-    'NetworkInformation.type',
-    'NetworkInformation.downlinkMax',
-    
-    'OscillatorNode.type',
-    'OscillatorNode.connect',
-    'OscillatorNode.frequency',
-
-    'Keyboard.lock',
-    'Keyboard.unlock'
-
-    'OfflineAudioCompletionEvent.renderedBuffer',
-    'PermissionStatus.state',
-    'Permissions.state',
-
-    'XRSystem.supportsSession',
-
-    'Geolocation.getCurrentPosition'
-
-    'DeviceMotionEventAcceleration.x', 
-    'DeviceMotionEventAcceleration.y',
-    'DeviceMotionEventAcceleration.z',
-    'DeviceMotionEventRotationRate.alpha', 
-    'DeviceMotionEventRotationRate.beta',
-    'DeviceMotionEventRotationRate.gamma',
-    'DeviceMotionEvent.acceleration',
-    'DeviceMotionEvent.rotationRate',
-    'DeviceMotionEvent.interval',
-    'DeviceMotionEvent.accelerationIncludingGravity',
-    'DeviceOrientationEvent.alpha',
-    'DeviceOrientationEvent.beta'
-    'DeviceOrientationEvent.gamma',
-    'ScreenOrientation.type',
-    'ScreenOrientation.angle',
-    'ScreenOrientation.unlock',
-]
 known_sinks = [
     'Window.sessionStorage', 
     'MessagePort.postMessage', 
@@ -367,7 +61,8 @@ known_sinks = [
     'HTMLInputElement.value', 
     'Node.textContent',
     'HTMLScriptElement.setAttribute',
-    'HTMLScriptElement.src'
+    'HTMLScriptElement.src',
+    'HTMLImageElement.src'
 ]
 
 importantEvents = [
@@ -396,6 +91,59 @@ importantEvents = [
     'touchmove',
     'wheel',
 ]
+
+def export_table_to_csv(argument):
+    """Export the `multicore_static_info` table to CSV and truncate the `script_flow` table."""
+    conn = psycopg2.connect(
+        dbname=dbname,
+        user=user,
+        password=password,
+        host=host,
+        port=port
+    )
+    
+    try:
+        # Export `multicore_static_info` table
+        query = "SELECT * FROM multicore_static_info;"
+        df = pd.read_sql(query, conn)
+        
+        # Define the path to save the CSV for multicore_static_info
+        output_path = f"/home/vagrant/BehavioralBiometricSA/company_analysis_results/{argument}/multicore_static_info.csv"
+        
+        # Ensure the directory exists
+        os.makedirs(os.path.dirname(output_path), exist_ok=True)
+        
+        # Save the DataFrame to CSV
+        df.to_csv(output_path, index=False)
+        print(f"Table `multicore_static_info` has been exported to {output_path}")
+        
+        # Export `script_flow` table
+        query = "SELECT * FROM script_flow;"
+        df = pd.read_sql(query, conn)
+        
+        # Define the path to save the CSV for script_flow
+        output_path = f"/home/vagrant/BehavioralBiometricSA/company_analysis_results/{argument}/vv8_script_flow.csv"
+        
+        # Ensure the directory exists
+        os.makedirs(os.path.dirname(output_path), exist_ok=True)
+        
+        # Save the DataFrame to CSV
+        df.to_csv(output_path, index=False)
+        print(f"Table `script_flow` has been exported to {output_path}")
+        
+        # Truncate the `script_flow` table
+        truncate_query = "TRUNCATE TABLE script_flow;"
+        with conn.cursor() as cur:
+            cur.execute(truncate_query)
+            conn.commit()
+        print("Table `script_flow` has been truncated.")
+    
+    except Exception as e:
+        print(f"An error occurred: {e}")
+    
+    finally:
+        conn.close()
+
 
 def duplicate_api(api, offset, APIs):
     for i in APIs:
@@ -429,7 +177,7 @@ def split_APIs(APIs):
 
 def check_behavioral_source(APIs):
     for API in APIs:
-        if API in behavioral_sources:
+        if API.split('.')[0] in behavioral_sources:
             return True
     return False
 
@@ -442,7 +190,7 @@ def check_browser_fp_sources(APIs):
 def filter_sources(APIs):
     filtered_list = []
     for API in APIs:
-        if API['API'] in behavioral_sources or API['API'] in browser_fingerprinting_sources:
+        if API['API'].split('.')[0] in behavioral_sources or API['API'] in browser_fingerprinting_sources:
             filtered_list.append(API)
     return filtered_list
 
@@ -489,7 +237,7 @@ def getAllSourceAPIs(APIs):
     behavioral_apis  = []
     fp_apis = []
     for api in APIs:
-        if api['API'] in behavioral_sources:
+        if api['API'].split('.')[0] in behavioral_sources:
             behavioral_apis.append(api['API'])
         elif api['API'] in browser_fingerprinting_sources:
             fp_apis.append(api['API'])
@@ -530,7 +278,7 @@ def calculateAccessCount(APIs):
     fingeprinting_access_counts = {}
     for API in APIs:
         api = API['API']
-        if api in behavioral_sources:
+        if api.split('.')[0] in behavioral_sources:
             if api in behavioral_access_counts:
                 behavioral_access_counts[api] += 1
             else:
@@ -632,7 +380,7 @@ def analysis_method(id, url, code, APIs, write_cursor, write_conn, count, lock, 
                         endpoint_score[end.get_id()]['behavioral_apis'] = []
                         endpoint_score[end.get_id()]['fp_count'] = 0
                         endpoint_score[end.get_id()]['fp_apis'] = []
-                        if api['API'] in behavioral_sources:
+                        if api['API'].split('.')[0] in behavioral_sources:
                             endpoint_score[end.get_id()]['behavioral_count'] += 1
                             endpoint_score[end.get_id()]['behavioral_apis'].append(api['API'])
                         else:
@@ -643,7 +391,7 @@ def analysis_method(id, url, code, APIs, write_cursor, write_conn, count, lock, 
                         endpoint_score[end.get_id()]['end'] = True if end in old else False
                     else:
                         if(api['API'] not in endpoint_score[end.get_id()]['source_apis']):
-                            if (api['API'] in behavioral_sources):
+                            if (api['API'].split('.')[0] in behavioral_sources):
                                 endpoint_score[end.get_id()]['behavioral_count'] += 1
                                 endpoint_score[end.get_id()]['behavioral_apis'].append(api['API'])
                             else:
@@ -834,4 +582,16 @@ def analyze():
 
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description="Process multicore static info table and optionally export to CSV.")
+    
+    # Add argument to handle the optional export
+    parser.add_argument('--export', help="Export the `multicore_static_info` table to a CSV at /tmp/<argument>", type=str, required=False)
+    
+    args = parser.parse_args()
+
+    # Run analysis
     analyze()
+
+    # If the --export argument is provided, export the table to CSV
+    if args.export:
+        export_table_to_csv(args.export)
