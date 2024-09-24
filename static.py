@@ -9,6 +9,7 @@ import time
 from multiprocessing import Manager
 import argparse  # Added for command-line argument handling
 import pandas as pd  # For exporting to CSV
+import traceback
 
 
 # Database connection parameters
@@ -223,7 +224,7 @@ def findMaxAggregationScore(nodes):
         if nodes[i]['source_count'] > max:
             max = nodes[i]['source_count']
             index = i
-    return max, nodes[index]['source_apis'] if index != -1 else [], nodes[index]['behavioral_count'], nodes[index]['fp_count']
+    return max, nodes[index]['source_apis'] if index != -1 else [], nodes[index]['behavioral_count'] if index!= -1 else [], nodes[index]['fp_count'] if index!= -1 else []
 
 def findEventListenersAttached(APIs):
     events = []
@@ -245,7 +246,18 @@ def getAllSourceAPIs(APIs):
 
 def insert_into_table(table_name, data):
     columns = data.keys()
-    values = [json.dumps(data[column]) if isinstance(data[column], (dict, list)) else data[column] for column in columns]
+    values = []
+    
+    for column in columns:
+        value = data[column]
+        
+        # Check for invalid values (like empty lists) and replace with None (NULL in SQL)
+        if isinstance(value, list) and len(value) == 0:
+            values.append(None)
+        elif isinstance(value, (dict, list)):
+            values.append(json.dumps(value))  # Serialize dicts/lists as JSON for JSONB columns
+        else:
+            values.append(value)
     
     insert_statement = sql.SQL('INSERT INTO {table} ({fields}) VALUES ({values})').format(
         table=sql.Identifier(table_name),
@@ -254,6 +266,7 @@ def insert_into_table(table_name, data):
     )
 
     return insert_statement, values
+
 
 def findMaxBehavioralScore(nodes):
     max = 0
@@ -365,6 +378,8 @@ def analysis_method(id, url, code, APIs, write_cursor, write_conn, count, lock, 
         for api in source_APIs:
             source_api = []
             dataflow = []
+            if (len(api['API'].split('.')) < 2): # If API is like MouseEvent instead of MouseEvent.screenX keep in mind we are looking for screenX as the API
+                continue
             search_API(pdg, api['offset'],  code[api['offset']: api['offset']+30] if len(code) > api['offset'] + 30 else code[api['offset']: len(code)], api['API'].split('.')[1], source_api)
             if source_api != []:
                 endp = []
@@ -399,6 +414,7 @@ def analysis_method(id, url, code, APIs, write_cursor, write_conn, count, lock, 
                                 endpoint_score[end.get_id()]['fp_apis'].append(api['API'])
                             endpoint_score[end.get_id()]['source_apis'].append(api['API'])
                             endpoint_score[end.get_id()]['source_count'] += 1 
+
         sink_data = {}
         insertion_data['max_api_aggregation_score'], insertion_data['max_aggregated_apis'], insertion_data['behavioral_api_agg_count'], insertion_data['fp_api_agg_count'] = findMaxAggregationScore(endpoint_score)
         insertion_data['max_behavioral_api_aggregation_score'], insertion_data['aggregated_behavioral_apis'] = findMaxBehavioralScore(endpoint_score)
@@ -568,6 +584,8 @@ def analyze():
                         print(f"Task {task[4]} completed successfully")
                     except Exception as exc:
                         print(f"Task {task[4]} generated an exception: {exc}")
+                        traceback.print_exc() # Print full error trace for debugging
+                        exit(1)
             # Signal writer to end
             queue.put(None)
             # Wait for the writer process to finish
