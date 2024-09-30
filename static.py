@@ -560,7 +560,7 @@ def analyze():
         
         cursor.execute(query)
         # Make sure num_workers less than the CPU count os.cpu_count() due to cpu overload
-        num_workers = os.cpu_count() - 16
+        num_workers = int(os.cpu_count() / 2)
         batch_size = 10
         print(f"Number of available CPU cores: {num_workers}")
         counter = count()
