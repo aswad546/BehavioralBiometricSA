@@ -11,9 +11,9 @@
     "https://www.online-banking.business.hsbc.com.hk/portalserver/logon",
     "https://authentication.td.com/uap-ui/?consumer=easyweb&locale=en_CA#/uap/login",
     "https://online.lloydsbank.co.uk/personal/logon/login.jsp",
-    "https://www.halifax-online.co.uk",
-    "https://www.natwest.com/",
-    "https://www.bankofscotland.co.uk/",
+    "https://www.halifax-online.co.uk/personal/logon/login.jsp",
+    "https://www.onlinebanking.natwest.com/Default.aspx",
+    "https://online.bankofscotland.co.uk/personal/logon/login.jsp",
     "https://infinity.icicibank.com/corp/AuthenticationController?FORMSGROUP_ID__=AuthenticationFG&__START_TRAN_FLAG__=Y&FG_BUTTONS__=LOAD&ACTION.LOAD=Y&AuthenticationFG.LOGIN_FLAG=1&BANK_ID=ICI&ITM=nli_personalb_personal_login_btn&_gl=1*30xkeg*_ga*MTgzMDcxOTY5Ni4xNjIwMDM5NDU0*_ga_SKB78GHTFV*MTYyODIzNDM4NC43Ny4xLjE2MjgyMzQ1MDQuMjc.&_ga=2.169577317.558349428.1699007889-1511871104.1699007888&_gac=1.8201990.1697523963.EAIaIQobChMI-7jpvrn8gQMVt6lmAh1nywMHEAAYASAAEgKBxfD_BwE",
     "https://www.onlinebanking.natwest.com/Default.aspx",
     "https://login.anz.com/internetbanking",
@@ -29,7 +29,7 @@
     "https://usdigital.bmo.com/www/#/login",
     "https://bank.barclays.co.uk/olb/authlogin/loginAppContainer.do#/identification",
     "https://online.mbna.co.uk/personal/logon/login.jsp",
-    "banking.westpac.com.au",
+    "https://banking.westpac.com.au",
     "https://online.macquarie.com.au/personal/#/"
   ],
   "Iovation (TransUnion)": [
@@ -78,7 +78,7 @@
   "Neuro-Id": [
     "https://id.biltrewards.com/login/enter-email/",
     "https://www.joracredit.com/",
-   " https://www.coign.com/"
+    "https://www.coign.com/"
   ],
   "Behaviosec (LexisNexis ThreatMetrix Module)": [
     "https://www.cibconline.cibc.com/ebm-resources/online-banking/client/index.html#/auth/signon?msgId=0008",
@@ -100,7 +100,8 @@
     "https://my.wealthsimple.com/app/saml/login?lang=en&locale=en_CA",
     "https://login.blockchain.com/en/#/login?product=wallet", 
     "https://stockx.com/",
-    "https://my.wealthsimple.com/app/login?locale=en-ca"
+    "https://my.wealthsimple.com/app/login?locale=en-ca",
+    "https://www.dankbank.co/"
   ],
   "Forter": [
     "https://www.upwork.com",
