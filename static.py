@@ -10,7 +10,7 @@ from multiprocessing import Manager
 import argparse  # Added for command-line argument handling
 import pandas as pd  # For exporting to CSV
 import traceback
-
+import gc
 
 # Database connection parameters
 host = 'localhost'  # Since it's running on the same device
@@ -119,18 +119,18 @@ def export_table_to_csv(argument):
         print(f"Table `multicore_static_info` has been exported to {output_path}")
         
         # Export `script_flow` table
-        query = "SELECT * FROM script_flow;"
-        df = pd.read_sql(query, conn)
+        # query = "SELECT * FROM script_flow;"
+        # df = pd.read_sql(query, conn)
         
-        # Define the path to save the CSV for script_flow
-        output_path = f"/home/vagrant/BehavioralBiometricSA/company_analysis_results/{argument}/vv8_script_flow.csv"
+        # # Define the path to save the CSV for script_flow
+        # output_path = f"/home/vagrant/BehavioralBiometricSA/company_analysis_results/{argument}/vv8_script_flow.csv"
         
-        # Ensure the directory exists
-        os.makedirs(os.path.dirname(output_path), exist_ok=True)
+        # # Ensure the directory exists
+        # os.makedirs(os.path.dirname(output_path), exist_ok=True)
         
-        # Save the DataFrame to CSV
-        df.to_csv(output_path, index=False)
-        print(f"Table `script_flow` has been exported to {output_path}")
+        # # Save the DataFrame to CSV
+        # df.to_csv(output_path, index=False)
+        # print(f"Table `script_flow` has been exported to {output_path}")
         
         # # Truncate the `script_flow` table
         # truncate_query = "TRUNCATE TABLE script_flow;"
@@ -521,7 +521,7 @@ def analyze():
     print("Connected to the database.")
     with conn.cursor(name="custom_cursor") as cursor:
         # Create a cursor object using the connection
-        cursor.itersize = 1000  # chunk size
+        cursor.itersize = 500  # chunk size
 
         create_table_query = '''
         DROP TABLE IF EXISTS multicore_static_info;
@@ -560,36 +560,49 @@ def analyze():
         
         cursor.execute(query)
         # Make sure num_workers less than the CPU count os.cpu_count() due to cpu overload
-        num_workers = int(os.cpu_count() / 2)
-        batch_size = 10
+        num_workers = int(os.cpu_count() / 4)
+        batch_size = 5
         print(f"Number of available CPU cores: {num_workers}")
         counter = count()
         tasks = []
-        tasks = [(id, url, code, APIs, next(counter)) for id, _, _, code, _, url, APIs, _ in cursor]
-        with Manager() as manager:
-            lock = manager.Lock()
-            queue = manager.Queue()
+        # Fetch data in chunks of 500 rows
+        while True:
+            rows = cursor.fetchmany(500)  # Fetch the next 500 rows from the server
+            if not rows:
+                break  # Exit loop if no more rows are available
 
-            writer_process = Process(target=batch_writer_worker, args=(queue, batch_size, write_batch_to_database))
-            writer_process.start()
+            # Create tasks for each row and add them to the task list
+            tasks.extend([(id, url, code, APIs, next(counter)) for id, _, _, code, _, url, APIs, _ in rows])
 
-            with concurrent.futures.ProcessPoolExecutor(max_workers=num_workers) as executor:
-                # Submit tasks to the process pool
-                futures = {executor.submit(worker, task, lock, queue): task for task in tasks}
-                for future in concurrent.futures.as_completed(futures):
-                    task = futures[future]
-                    try:
-                        # We don't need to do anything with the result, just ensure the task completes
-                        future.result()
-                        print(f"Task {task[4]} completed successfully")
-                    except Exception as exc:
-                        print(f"Task {task[4]} generated an exception: {exc}")
-                        traceback.print_exc() # Print full error trace for debugging
-                        exit(1)
-            # Signal writer to end
-            queue.put(None)
-            # Wait for the writer process to finish
-            writer_process.join()
+            # Process the tasks in chunks
+            with Manager() as manager:
+                lock = manager.Lock()
+                queue = manager.Queue()
+
+                # Start the batch writer process
+                writer_process = Process(target=batch_writer_worker, args=(queue, batch_size, write_batch_to_database))
+                writer_process.start()
+
+                # Process the tasks using ProcessPoolExecutor
+                with concurrent.futures.ProcessPoolExecutor(max_workers=num_workers) as executor:
+                    futures = {executor.submit(worker, task, lock, queue): task for task in tasks}
+                    for future in concurrent.futures.as_completed(futures):
+                        task = futures[future]
+                        try:
+                            future.result()
+                            print(f"Task {task[4]} completed successfully")
+                        except Exception as exc:
+                            print(f"Task {task[4]} generated an exception: {exc}")
+                            traceback.print_exc()  # Print full error trace for debugging
+                            exit(1)
+
+                # Signal the batch writer process to finish
+                queue.put(None)
+                writer_process.join()
+
+            # Clear the task list and trigger garbage collection after processing each chunk
+            tasks.clear()
+            gc.collect()  # Explicitly run garbage collection after processing each chunk of data
 
         
         write_cursor.close()
