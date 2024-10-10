@@ -1,24 +1,26 @@
 import json
 
-# Load the JSON data from the file
-file_path = '/home/vagrant/BehavioralBiometricSA/idldata.json'
-with open(file_path, 'r') as file:
-    idl_data = json.load(file)
+def find_all_properties(event_name):
+    # Load the JSON data
+    with open("/home/vagrant/BehavioralBiometricSA/webidl_apis_with_parents.json") as f:
+        data = json.load(f)
 
-# Function to find all classes that inherit from a specific parent, directly or indirectly
-def find_inheritors(idl_data, base_class):
-    inheritors = set()
-    
-    def recursive_search(current_class):
-        for class_name, class_info in idl_data.items():
-            if class_info.get("parent") == current_class:
-                if class_name not in inheritors:
-                    inheritors.add(class_name)
-                    recursive_search(class_name)
-    
-    recursive_search(base_class)
-    return inheritors
+    # Collect all properties, including those from parents
+    def collect_properties(interface):
+        properties = set()
+        while interface and interface in data:
+            # Add the properties of the current interface
+            if "properties" in data[interface]:
+                properties.update(data[interface]["properties"])
+            # Move to the parent interface
+            interface = data[interface].get("parent")
+        return properties
 
-# Find all classes that inherit from UIEvent
-ui_event_inheritors = find_inheritors(idl_data, "UIEvent")
-print(ui_event_inheritors)
+    # Return the collected properties for the given event/interface
+    return list(collect_properties(event_name))
+
+# Example usage:
+event_properties = find_all_properties("DeviceOrientationEvent")
+for x in event_properties:
+    print(f"DeviceOrientationEvent.{x}")
+
