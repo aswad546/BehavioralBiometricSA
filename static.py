@@ -18,27 +18,12 @@ port = '5434'  # The port the database listens on
 dbname = 'vv8_backend'  # Database name
 user = 'vv8'  # Username
 password = 'vv8'  # Password
-behavioral_sources = [
-    'CompositionEvent', 
-    'TouchEvent', 
-    'PointerEvent', 
-    'TextEvent', 
-    'FocusEvent', 
-    'MouseEvent', 
-    'InputEvent', 
-    'WheelEvent', 
-    'DragEvent', 
-    'KeyboardEvent',
-    'Touch',
-    'DeviceMotionEventAcceleration',
-    'DeviceMotionEventRotationRate',
-    'DeviceMotionEvent',
-    'DeviceOrientationEvent'
-    ]
-####################################
+
 browser_fingerprinting_sources = []
 with open('/home/vagrant/BehavioralBiometricSA/fp_apis.txt', 'r') as file:
-    browser_fingerprinting_sources = [line.strip() for line in file.readlines()]
+    browser_fingerprinting_sources = {line.strip() for line in file.readlines()}
+with open('/home/vagrant/BehavioralBiometricSA/behavior_apis.txt', 'r') as file:
+    behavioral_sources = {line.strip() for line in file}  
 
 
 known_sinks = [
@@ -178,7 +163,7 @@ def split_APIs(APIs):
 
 def check_behavioral_source(APIs):
     for API in APIs:
-        if API.split('.')[0] in behavioral_sources:
+        if API in behavioral_sources:
             return True
     return False
 
@@ -191,7 +176,7 @@ def check_browser_fp_sources(APIs):
 def filter_sources(APIs):
     filtered_list = []
     for API in APIs:
-        if API['API'].split('.')[0] in behavioral_sources or API['API'] in browser_fingerprinting_sources:
+        if API['API'] in behavioral_sources or API['API'] in browser_fingerprinting_sources:
             filtered_list.append(API)
     return filtered_list
 
@@ -238,7 +223,7 @@ def getAllSourceAPIs(APIs):
     behavioral_apis  = []
     fp_apis = []
     for api in APIs:
-        if api['API'].split('.')[0] in behavioral_sources:
+        if api['API'] in behavioral_sources:
             behavioral_apis.append(api['API'])
         elif api['API'] in browser_fingerprinting_sources:
             fp_apis.append(api['API'])
@@ -291,7 +276,7 @@ def calculateAccessCount(APIs):
     fingeprinting_access_counts = {}
     for API in APIs:
         api = API['API']
-        if api.split('.')[0] in behavioral_sources:
+        if api in behavioral_sources:
             if api in behavioral_access_counts:
                 behavioral_access_counts[api] += 1
             else:
@@ -395,7 +380,7 @@ def analysis_method(id, url, code, APIs, write_cursor, write_conn, count, lock, 
                         endpoint_score[end.get_id()]['behavioral_apis'] = []
                         endpoint_score[end.get_id()]['fp_count'] = 0
                         endpoint_score[end.get_id()]['fp_apis'] = []
-                        if api['API'].split('.')[0] in behavioral_sources:
+                        if api['API'] in behavioral_sources:
                             endpoint_score[end.get_id()]['behavioral_count'] += 1
                             endpoint_score[end.get_id()]['behavioral_apis'].append(api['API'])
                         else:
@@ -406,7 +391,7 @@ def analysis_method(id, url, code, APIs, write_cursor, write_conn, count, lock, 
                         endpoint_score[end.get_id()]['end'] = True if end in old else False
                     else:
                         if(api['API'] not in endpoint_score[end.get_id()]['source_apis']):
-                            if (api['API'].split('.')[0] in behavioral_sources):
+                            if (api['API'] in behavioral_sources):
                                 endpoint_score[end.get_id()]['behavioral_count'] += 1
                                 endpoint_score[end.get_id()]['behavioral_apis'].append(api['API'])
                             else:
@@ -560,7 +545,7 @@ def analyze():
         
         cursor.execute(query)
         # Make sure num_workers less than the CPU count os.cpu_count() due to cpu overload
-        num_workers = int(os.cpu_count() / 4)
+        num_workers = int(os.cpu_count() / 2)
         batch_size = 5
         print(f"Number of available CPU cores: {num_workers}")
         counter = count()

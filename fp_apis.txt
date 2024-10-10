@@ -11,7 +11,7 @@ AudioContext.outputLatency
 AudioContext.sampleRate
 AudioDestinationNode.channelCount
 AudioDestinationNode.maxChannelCount
-AudioDestinationNode.numberOfInputsxx
+AudioDestinationNode.numberOfInputs
 AudioDestinationNode.numberOfOutputs
 AudioNode.channelCount
 AudioNode.numberOfInputs
