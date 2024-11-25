@@ -118,11 +118,11 @@ def export_table_to_csv(argument):
         # print(f"Table `script_flow` has been exported to {output_path}")
         
         # # Truncate the `script_flow` table
-        # truncate_query = "TRUNCATE TABLE script_flow;"
-        # with conn.cursor() as cur:
-        #     cur.execute(truncate_query)
-        #     conn.commit()
-        # print("Table `script_flow` has been truncated.")
+        truncate_query = "TRUNCATE TABLE script_flow;"
+        with conn.cursor() as cur:
+             cur.execute(truncate_query)
+             conn.commit()
+        print("Table `script_flow` has been truncated.")
     
     except Exception as e:
         print(f"An error occurred: {e}")
