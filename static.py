@@ -94,7 +94,7 @@ def export_table_to_csv(argument):
         df = pd.read_sql(query, conn)
         
         # Define the path to save the CSV for multicore_static_info
-        output_path = f"/home/vagrant/BehavioralBiometricSA/company_analysis_results/{argument}/multicore_static_info.csv"
+        output_path = f"/vagrant/BehavioralBiometricSA/boya_results/{argument}/multicore_static_info.csv"
         
         # Ensure the directory exists
         os.makedirs(os.path.dirname(output_path), exist_ok=True)
