@@ -91,7 +91,7 @@ def get_data_flow(input_file, url, lock, benchmarks, store_pdgs=None, check_var=
             draw_cfg(cfg_nodes, attributes=True, save_path=save_path_cfg)
         unknown_var = []
         try:
-            with Timeout(450):  # Tries to produce DF within 60s
+            with Timeout(450):  # Tries to produce DF within 450s
                 dfg_nodes = df_scoping(cfg_nodes, var_loc=VarList(), var_glob=VarList(),
                                        unknown_var=unknown_var, id_list=[], entry=1)[0]
         except Timeout.Timeout:
