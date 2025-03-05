@@ -43,17 +43,14 @@ from dfg_construct.static_helpers import get_data_flow, search_API, find_dataflo
 
 def generate_graph_with_timeout(filename, url, lock, timeout=450):
     """
-    Run get_data_flow in a separate process and wait up to `timeout` seconds.
-    Returns the produced graph or None if timeout exceeded.
+    Run get_data_flow directly in the main thread.
+    The internal Timeout context (using signal.alarm) inside get_data_flow
+    will enforce the timeout.
     """
-    # Use a Pool with a single process
-    with multiprocessing.Pool(processes=1) as pool:
-        result = pool.apply_async(get_data_flow, args=(filename, url, lock, {}))
-        try:
-            pdg = result.get(timeout=timeout)
-            return pdg
-        except multiprocessing.TimeoutError:
-            return None
+    # Optionally, you could set a timeout in this wrapper using signal.alarm here,
+    # but since get_data_flow already uses a Timeout context, we simply call it.
+    return get_data_flow(filename, url, lock, benchmarks={})
+
 
 
 class StaticAnalyzer:

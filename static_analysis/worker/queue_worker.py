@@ -14,7 +14,6 @@ def callback(ch, method, properties, body):
         manager = Manager()
         lock = manager.Lock()
         analyzer = StaticAnalyzer(lock)
-        print(script_data)
         # Process the script; submission_id is optional
         analyzer.analyze_script(
             script_data["id"],

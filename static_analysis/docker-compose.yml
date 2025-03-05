@@ -36,7 +36,7 @@ services:
       - DB_NAME=vv8_backend
       - DB_USER=vv8
       - DB_PASSWORD=vv8
-      - DB_WRITE_MODE=batch
+      - DB_WRITE_MODE=immediate
       - RABBITMQ_HOST=rabbitmq
       - RABBITMQ_PORT=5672
       - RABBITMQ_QUEUE=job_queue
