@@ -21,12 +21,12 @@ import pickle
 import psutil
 from multiprocessing import Process, Queue
 
-from utility_df import *
-from handle_json import *
-from build_cfg import *
-from build_dfg import *
-from var_list import *
-from display_graph import *
+from dfg_construct.utility_df import *
+from dfg_construct.handle_json import *
+from dfg_construct.build_cfg import *
+from dfg_construct.build_dfg import *
+from dfg_construct.var_list import *
+from dfg_construct.display_graph import *
 
 
 GIT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
@@ -66,7 +66,7 @@ def get_data_flow(input_file, url, lock, benchmarks, store_pdgs=None, check_var=
             PDG of the file
         - or None.
     """
-
+    print('inside get_data_flow')
     start = timeit.default_timer()
     if input_file.endswith('.js'):
         esprima_json = input_file.replace('.js', '.json')

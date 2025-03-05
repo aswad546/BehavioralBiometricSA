@@ -1,0 +1,9 @@
+psycopg2_binary==2.9.9
+pandas
+psutil==5.9.8
+graphviz==0.20.3
+python-dotenv
+fastapi
+uvicorn
+redis
+pika

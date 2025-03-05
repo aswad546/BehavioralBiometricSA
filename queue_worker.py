@@ -1,7 +1,7 @@
 # queue_worker.py
 import time
 import traceback
-from queue_utils import pop_from_queue, redis_client
+from BehavioralBiometricSA.static_analysis.worker.queue_utils import pop_from_queue, redis_client
 from db_utils import get_db_connection_context
 import json
 from config import REDIS_QUEUE_NAME

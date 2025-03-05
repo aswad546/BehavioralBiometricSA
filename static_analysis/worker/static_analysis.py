@@ -8,7 +8,7 @@ import multiprocessing
 
 from config import BEHAVIORAL_SOURCES, DB_WRITE_MODE
 from db_utils import insert_into_table, get_db_connection_context
-from BehavioralBiometricSA.static_analysis.worker.queue_utils import push_to_queue
+# from queue_utils import push_to_queue
 from utils import (
     split_APIs,
     check_behavioral_source,
@@ -22,9 +22,6 @@ from utils import (
     find_max_fp_score,
     calculate_access_count,
 )
-
-
-
 
 def get_submission_url(submission_id):
     """Retrieve the submission URL from the submissions table given submission_id."""
@@ -42,7 +39,7 @@ def get_submission_url(submission_id):
         return None
 
 # Assume these functions are imported from your static_helpers module.
-from BehavioralBiometricSA.static_analysis.worker.dfg_construct.static_helpers import get_data_flow, search_API, find_dataflow
+from dfg_construct.static_helpers import get_data_flow, search_API, find_dataflow
 
 def generate_graph_with_timeout(filename, url, lock, timeout=450):
     """
@@ -96,7 +93,9 @@ class StaticAnalyzer:
 
         print("Processing script:", id)
         APIs, unique_APIs = split_APIs(APIs)
+        print(len(APIs), len(unique_APIs))
         if check_behavioral_source(unique_APIs):
+            print('Has behavioral sources')
             filename = f"/tmp/exp{id}.js"
             write_code_to_file(code, filename)
             source_APIs = filter_sources(APIs)
@@ -109,7 +108,7 @@ class StaticAnalyzer:
             insertion_data['fingerprinting_source_apis'] = fp_src
             insertion_data['behavioral_source_api_count'] = len(behavioral_src)
             insertion_data['fingerprinting_source_api_count'] = len(fp_src)
-
+            print('Generating graph')
             start_time = time.time()
             pdg = generate_graph_with_timeout(filename, url, self.lock, timeout=450)
             elapsed_time = time.time() - start_time
@@ -225,9 +224,9 @@ class StaticAnalyzer:
             except Exception as e:
                 print("Error writing result to DB immediately:", e)
         elif DB_WRITE_MODE.lower() == "batch":
-            # Batch mode: push the insert data into a Redis queue.
-            push_to_queue({"stmt": stmt.as_string(conn=get_db_connection_context().__enter__()),
-                           "values": values})
+            # # Batch mode: push the insert data into a Redis queue.
+            # push_to_queue({"stmt": stmt.as_string(conn=get_db_connection_context().__enter__()),
+            #                "values": values})
             print("Result pushed to Redis queue for later batch writing")
         else:
             print("Unknown DB_WRITE_MODE. No action taken.")

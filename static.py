@@ -1,6 +1,6 @@
 import psycopg2
 from psycopg2 import sql
-from static_helpers import *
+from BehavioralBiometricSA.static_analysis.worker.static_helpers import *
 import json
 import os
 import concurrent.futures

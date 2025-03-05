@@ -1,5 +1,5 @@
-from static_analysis import analyze
-from db_utils import export_table_to_csv
+from BehavioralBiometricSA.static_analysis.api.static_analysis import analyze
+from BehavioralBiometricSA.static_analysis.api.db_utils import export_table_to_csv
 import argparse
 
 def main():

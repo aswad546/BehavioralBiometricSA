@@ -19,8 +19,8 @@
 import logging
 import copy
 
-import js_reserved
-import var_list
+import dfg_construct.js_reserved as js_reserved
+import dfg_construct.var_list as var_list
 
 DECLARATIONS = ['VariableDeclaration', 'FunctionDeclaration']
 EXPRESSIONS = ['AssignmentExpression', 'ArrayExpression', 'ArrowFunctionExpression',

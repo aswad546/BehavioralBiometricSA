@@ -1,4 +1,4 @@
-from pdgs_generation import *
+from BehavioralBiometricSA.static_analysis.worker.dfg_construct.pdgs_generation import *
 
 # sinks = ['WebSocket', 'Storage', 'SQLTransaction', 'IDBTransaction', 'IDBObjectStore', 'IDBFactory', 'openDatabase', 'transaction', 'sessionStorage', 'sendBeacon', 'localStorage', 'port2', 'Database', 'port1', 'toDataURL', 'indexedDB', 'postMessage', 'IDBDatabase', 'responseText', 'send', 'fetch', 'XMLHttpRequest', 'MessageEvent', 'MessageChannel', 'createObjectStore', 'MessagePort', 'src']
 Array_att = ["ArrayExpression", "ObjectExpression"]
