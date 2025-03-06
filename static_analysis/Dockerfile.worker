@@ -1,8 +1,13 @@
 # Dockerfile.worker
-FROM node:18-slim
+FROM python:3.12-slim
 
-# Install Python3 and pip
-RUN apt-get update && apt-get install -y python3 python3-pip && rm -rf /var/lib/apt/lists/*
+# Install Node.js 18 (and npm) on the Python image.
+RUN apt-get update && \
+    apt-get install -y curl && \
+    curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
+    apt-get install -y nodejs && \
+    apt-get install -y python3-pip && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app/worker
 
@@ -12,9 +17,10 @@ RUN npm install
 
 # Copy worker Python requirements and install them with --break-system-packages
 COPY requirements_worker.txt .
-RUN pip3 install --no-cache-dir --break-system-packages -r requirements_worker.txt
+RUN pip3 install --no-cache-dir -r requirements_worker.txt
 
 # Copy worker code into the container
 COPY worker/ .
 
-CMD ["python3", "queue_worker.py"]
+# Ensure unbuffered Python output (optional but helpful for logging)
+CMD ["python3", "-u", "queue_worker.py"]

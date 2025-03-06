@@ -1,11 +1,9 @@
-version: '3.8'
-
 services:
   api:
     build:
       context: .
       dockerfile: Dockerfile.api
-    command: uvicorn main:app --host 0.0.0.0 --port 8100
+    # command: uvicorn main:app --host 0.0.0.0 --port 8100
     ports:
       - "8100:8100"
     environment:
@@ -26,10 +24,11 @@ services:
         condition: service_healthy
 
   worker:
+    restart: always
     build:
       context: .
       dockerfile: Dockerfile.worker
-    command: python3 /app/worker/queue_worker.py
+    # command: python3 queue_worker.py
     environment:
       - DB_HOST=192.168.152.115
       - DB_PORT=5434

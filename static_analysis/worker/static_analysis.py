@@ -107,9 +107,10 @@ class StaticAnalyzer:
             insertion_data['fingerprinting_source_api_count'] = len(fp_src)
             print('Generating graph')
             start_time = time.time()
+            # pdg = generate_graph_with_timeout(filename, url, self.lock, timeout=450) if url.includes('googletagmanager.com') != True else None
             pdg = generate_graph_with_timeout(filename, url, self.lock, timeout=450)
             elapsed_time = time.time() - start_time
-            print(f"Took: {elapsed_time:.2f} seconds for {url}")
+            print(f"Took: {elapsed_time:.2f} seconds for graph generation")
             if pdg is None:
                 print("Unable to generate graph for url:", url)
                 insertion_data['graph_construction_failure'] = True

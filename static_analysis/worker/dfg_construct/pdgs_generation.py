@@ -66,7 +66,6 @@ def get_data_flow(input_file, url, lock, benchmarks, store_pdgs=None, check_var=
             PDG of the file
         - or None.
     """
-    print('inside get_data_flow')
     start = timeit.default_timer()
     if input_file.endswith('.js'):
         esprima_json = input_file.replace('.js', '.json')
@@ -95,8 +94,7 @@ def get_data_flow(input_file, url, lock, benchmarks, store_pdgs=None, check_var=
                 dfg_nodes = df_scoping(cfg_nodes, var_loc=VarList(), var_glob=VarList(),
                                        unknown_var=unknown_var, id_list=[], entry=1)[0]
         except Timeout.Timeout:
-            logging.exception(f'Timed out for {input_file} at {url}')
-            print('Took too long to create data flow graph')
+            print(f'Timed out for {input_file} at {url}')
             return None
         if save_path_pdg is not False:
             draw_pdg(dfg_nodes, attributes=True, save_path=save_path_pdg)
