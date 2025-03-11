@@ -111,6 +111,7 @@ class StaticAnalyzer:
             pdg = generate_graph_with_timeout(filename, url, self.lock, timeout=450)
             elapsed_time = time.time() - start_time
             print(f"Took: {elapsed_time:.2f} seconds for graph generation")
+            insertion_data['submission_url'] =  get_submission_url(submission_id)
             if pdg is None:
                 print("Unable to generate graph for url:", url)
                 insertion_data['graph_construction_failure'] = True
@@ -202,7 +203,7 @@ class StaticAnalyzer:
                 insertion_data['apis_going_to_sink'] = sink_data
             else:
                 print("No data flow to sinks")
-            insertion_data['submission_url'] =  get_submission_url(submission_id)
+            
             self._finalize_result(insertion_data)
         else:
             print("File with id", id, "contains no relevant sources")
