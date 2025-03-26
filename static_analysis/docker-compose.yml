@@ -44,12 +44,16 @@ services:
         condition: service_healthy
       rabbitmq:
         condition: service_healthy
+    deploy:
+      mode: replicated
+      replicas: 50
 
   rabbitmq:
     image: rabbitmq:3-management
     ports:
       - "5762:5672"
       - "15672:15672"
+      - "15693:15692"
     healthcheck:
       test: ["CMD", "rabbitmq-diagnostics", "status"]
       interval: 10s
