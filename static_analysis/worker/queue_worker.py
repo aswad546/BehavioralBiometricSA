@@ -4,7 +4,7 @@ import traceback
 import json
 import multiprocessing
 import threading
-from mq_utils import get_rabbitmq_connection, consume_jobs
+from mq_utils import get_rabbitmq_connection, consume_jobs, declare_queue
 from static_analysis import StaticAnalyzer
 
 def wait_for_rabbitmq(timeout=60, delay=2):
@@ -88,6 +88,7 @@ def callback(ch, method, properties, body):
 def main():
     print("Worker: Starting RabbitMQ consumer...")
     wait_for_rabbitmq(timeout=60, delay=2)
+    declare_queue()
     try:
         consume_jobs(callback)
     except Exception as e:

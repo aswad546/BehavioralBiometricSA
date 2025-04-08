@@ -47,6 +47,9 @@ services:
       #   condition: service_healthy
       rabbitmq:
         condition: service_healthy
+    deploy:
+      mode: replicated
+      replicas: 50
 
   rabbitmq:
     image: rabbitmq:3-management
