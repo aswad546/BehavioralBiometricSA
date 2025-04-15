@@ -141,7 +141,8 @@
     "https://hb.illimitybank.com/login"
   ],
   "Darwinium": [
-    "https://www.asaas.com/login/auth?customerSignUpOriginChannel=DIGITAL_ACCOUNT_PAGE"
+    "https://www.asaas.com/login/auth?customerSignUpOriginChannel=DIGITAL_ACCOUNT_PAGE",
+    "https://www.techsydney.com.au/"
   ],
   "Feedzai": [
     "https://www.cajamar.es/es/particulares/productos-y-servicios/banca-a-distancia/",
