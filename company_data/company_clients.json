@@ -30,11 +30,14 @@
     "https://bank.barclays.co.uk/olb/authlogin/loginAppContainer.do#/identification",
     "https://online.mbna.co.uk/personal/logon/login.jsp",
     "https://banking.westpac.com.au",
-    "https://online.macquarie.com.au/personal/#/"
+    "https://online.macquarie.com.au/personal/#/",
+    "https://retail.santander.co.uk/"
   ],
   "Iovation (TransUnion)": [
+    "https://auth.synchronybank.com/account/login",
     "https://stake.com/?key=ON&country=CA&region=ON&dir=redirect&modal=restrictedRegion",
     "https://www.upwork.com",
+    "www.ambrosewilson.com",
     "https://www.usbank.com/index.html",
     "https://www.jcpenney.com/cart/signin",
     "https://www.expedia.ca/login?ckoflag=0&uurl=e3id%3Dredr%26rurl%3D%2F",
@@ -63,7 +66,58 @@
     "https://access.creditonebank.com/",
     "https://www.midcountry.bank/login/",
     "https://web6.secureinternetbank.com/PBI_PBI1151/Login/041209080",
-    "https://www.westernunion.com/ca/en/web/user/login"
+    "https://www.westernunion.com/ca/en/web/user/login",
+    "https://www.menswearhouse.com/",
+    "https://bankfirst.com/",
+    "https://www.norwaysavings.bank/#",
+    "https://www.kohler.com/en",
+    "https://andalou.com/",
+    "https://www.keenfootwear.com/",
+    "https://www.moultrie.com/",
+    "https://www.bankofclarke.bank/",
+    "https://www.xnxx-cams.com/",
+    "https://www.brondell.com/",
+    "https://www.cffc.com/",
+    "https://www.johnstonmurphy.com/",
+    "login.ringcentral.com",
+    "https://www.interbank.com/",
+    "https://www.diffeyewear.com/",
+    "www.revolutionbeauty.com",
+    "https://farmersbankgroup.com/",
+    "www.lews.com",
+    "https://www.ffbla.bank/",
+    "https://janeiredale.com/",
+    "https://edikted.com/",
+    "www.lurenet.com",
+    "primisbank.com",
+    "https://www.thehonestkitchen.com/",
+    "https://www.beyondfinance.com/",
+    "https://sunwarrior.com/",
+    "https://sdfcu.org/",
+    "amscope.com",
+    "https://www.swagbucks.com/",
+    "amazon.syf.com",
+    "https://www.enorthfield.com/",
+    "https://www.marcellanyc.com/",
+    "https://www.hatch.co/",
+    "trustco.onlinebank.com",
+    "https://www.mineralfusion.com/",
+    "https://www.boscovs.com/",
+    "https://shapermint.com/",
+    "jcpenney.syf.com",
+    "tjx.syf.com",
+    "samsclub.syf.com",
+    "mastercard.syf.com",
+    "ib.sdccu.com",
+    "https://onlinexpress.gesa.com/Banking/SignIn.aspx",
+    "www.csecreditunion.com",
+    "https://login.alerus.com/",
+    "www.codeage.com",
+    "https://www.mercari.com/login/",
+    "https://www.mypoints.com/",
+    "https://www.sealy.com/",
+    "www.inboxdollars.com",
+    "www.camster.com"
 
   ],
   "Nudata": [
@@ -111,7 +165,9 @@
   ],
   "PingIdentity": [
     "https://www.victoriassecret.com/ca/account/signin",
-    "https://hicmls.clareityiam.net/idp/login"
+    "https://hicmls.clareityiam.net/idp/login",
+    "https://id.insight.com/"
+
   ],
   "Accertify": [
     "https://www.jcpenney.com/checkout/shipping",
@@ -156,7 +212,8 @@
     "https://online.sainsburysbank.co.uk/servicing/signin"
   ],
   "DataDome": [
-    "www.shutterstock.com"
+    "www.shutterstock.com",
+    "https://www.zoosk.com/login/registration"
   ],
   "Yofi": [
     "www.shipstation.com",
