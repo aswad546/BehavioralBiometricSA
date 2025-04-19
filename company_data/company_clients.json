@@ -243,15 +243,44 @@
   "TypingDNA": [
     "https://www.typingdna.com/demo-sametext.html"
   ],
+  
   "Human (PerimeterX)": [
-    "https://account.on.sportsbook.fanduel.ca"
+    "https://account.on.sportsbook.fanduel.ca",
+    "chron.com",
+    "www.weekand.com",
+    "seekingalpha.com",
+    "www.bloomberg.com",
+    "www.walmart.com",
+    "www.zillow.com",
+    "octopart.com",
+    "www.skyscanner.com",
+    "www.digikey.com",
+    "www.basicthinking.de",
+    "www.dreamstime.com",
+    "digikey.de",
+    "www.thenorthface.de",
+    "www.digikey.de",
+    "www.vice.com",
+    "www.catawiki.com",
+    "webflow.com",
+    "www.change.org",
+    "www.straight.com",
+    "de.iherb.com",
+    "www.kodi-tipps.de",
+    "www.fiverr.com",
+    "stockx.com",
+    "www.caranddriver.com",
+    "www.perigold.com",
+
   ],
   "ThreatMark": [
     "https://login.sparkasse.at/sts/oauth/authorize?response_type=token&client_id=georgeclient&state="
   ],
   "Transmit Security": [
     "https://app.ethoslife.com/q/goals",
-    "https://hb.illimitybank.com/login"
+    "https://hb.illimitybank.com/login",
+    "client.schwab.com"
+
   ],
   "Darwinium": [
     "https://www.asaas.com/login/auth?customerSignUpOriginChannel=DIGITAL_ACCOUNT_PAGE",
@@ -262,7 +291,9 @@
     "https://portal.kutxabank.es/cs/Satellite/kb/en/private-customers/corporative-information"
   ],
   "DataVisor": [
-    "www.airasia.com"
+    "www.airasia.com",
+    "https://www.mercari.com/"
+
   ],
   "CallSign": [
     "https://wise.com/login",
@@ -270,14 +301,61 @@
   ],
   "DataDome": [
     "www.shutterstock.com",
-    "https://www.zoosk.com/login/registration"
+    "https://www.zoosk.com/login/registration",
+    "hotels.com",
+    "en.comparis.ch",
+    "fr.comparis.ch",
+    "ra.co",
+    "soundcloud.com",
+    "www.alltrails.com",
+    "www.comparis.ch",
+    "www.ebookers.ch",
+    "www.etoro.com",
+    "www.expedia.com",
+    "www.fewo-direkt.de",
+    "www.fdj.fr",
+    "www.hoka.com",
+    "www.immobiliare.it",
+    "www.immowelt.de",
+    "www.leboncoin.fr",
+    "www.nytimes.com",
+    "www.seloger.com",
+    "www.thetrainline.com",
+    "www.yelp.com"
+
   ],
   "Yofi": [
     "www.shipstation.com",
     "cncpts.com",
     "www.dtlr.com",
-    "www.getquip.com"
+    "www.getquip.com",
+    "https://theperfectjean.nyc/en-ca",
+    "https://melin.com/",
+    "https://us.organicbasics.com/",
+    "https://www.springstepshoes.com/en-ca",
   ],
+  
+  "ArkoseLabs": [
+    "expedia.nl",
+    "www.expedia.com",
+    "www.vrbo.com",
+    "hotels.com",
+    "www.abritel.fr",
+    "www.travelocity.com",
+    "www.expediataap.com",
+    "www.carrentals.com",
+    "www.orbitz.com",
+    "www.flights.com",
+    "www.cheaptickets.com",
+    "www.stayz.com.au",
+    "citizensbankonline.com",
+    "auth.tiaa.org",
+    "app.hellofax.com",
+    "secure.zenefits.com",
+    "auth.linktr.ee",
+  ]
+
+
   "Cheq": [
     "www.vivint.com",
     "www.newcastle.edu.au",
