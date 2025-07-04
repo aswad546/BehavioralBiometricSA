@@ -30,11 +30,14 @@
     "https://bank.barclays.co.uk/olb/authlogin/loginAppContainer.do#/identification",
     "https://online.mbna.co.uk/personal/logon/login.jsp",
     "https://banking.westpac.com.au",
-    "https://online.macquarie.com.au/personal/#/"
+    "https://online.macquarie.com.au/personal/#/",
+    "https://retail.santander.co.uk/"
   ],
   "Iovation (TransUnion)": [
+    "https://auth.synchronybank.com/account/login",
     "https://stake.com/?key=ON&country=CA&region=ON&dir=redirect&modal=restrictedRegion",
     "https://www.upwork.com",
+    "www.ambrosewilson.com",
     "https://www.usbank.com/index.html",
     "https://www.jcpenney.com/cart/signin",
     "https://www.expedia.ca/login?ckoflag=0&uurl=e3id%3Dredr%26rurl%3D%2F",
@@ -63,7 +66,58 @@
     "https://access.creditonebank.com/",
     "https://www.midcountry.bank/login/",
     "https://web6.secureinternetbank.com/PBI_PBI1151/Login/041209080",
-    "https://www.westernunion.com/ca/en/web/user/login"
+    "https://www.westernunion.com/ca/en/web/user/login",
+    "https://www.menswearhouse.com/",
+    "https://bankfirst.com/",
+    "https://www.norwaysavings.bank/#",
+    "https://www.kohler.com/en",
+    "https://andalou.com/",
+    "https://www.keenfootwear.com/",
+    "https://www.moultrie.com/",
+    "https://www.bankofclarke.bank/",
+    "https://www.xnxx-cams.com/",
+    "https://www.brondell.com/",
+    "https://www.cffc.com/",
+    "https://www.johnstonmurphy.com/",
+    "login.ringcentral.com",
+    "https://www.interbank.com/",
+    "https://www.diffeyewear.com/",
+    "www.revolutionbeauty.com",
+    "https://farmersbankgroup.com/",
+    "www.lews.com",
+    "https://www.ffbla.bank/",
+    "https://janeiredale.com/",
+    "https://edikted.com/",
+    "www.lurenet.com",
+    "primisbank.com",
+    "https://www.thehonestkitchen.com/",
+    "https://www.beyondfinance.com/",
+    "https://sunwarrior.com/",
+    "https://sdfcu.org/",
+    "amscope.com",
+    "https://www.swagbucks.com/",
+    "amazon.syf.com",
+    "https://www.enorthfield.com/",
+    "https://www.marcellanyc.com/",
+    "https://www.hatch.co/",
+    "trustco.onlinebank.com",
+    "https://www.mineralfusion.com/",
+    "https://www.boscovs.com/",
+    "https://shapermint.com/",
+    "jcpenney.syf.com",
+    "tjx.syf.com",
+    "samsclub.syf.com",
+    "mastercard.syf.com",
+    "ib.sdccu.com",
+    "https://onlinexpress.gesa.com/Banking/SignIn.aspx",
+    "www.csecreditunion.com",
+    "https://login.alerus.com/",
+    "www.codeage.com",
+    "https://www.mercari.com/login/",
+    "https://www.mypoints.com/",
+    "https://www.sealy.com/",
+    "www.inboxdollars.com",
+    "www.camster.com"
 
   ],
   "Nudata": [
@@ -78,7 +132,8 @@
   "Neuro-Id": [
     "https://id.biltrewards.com/login/enter-email/",
     "https://www.joracredit.com/",
-    "https://www.coign.com/"
+    "https://www.coign.com/",
+    "trader.tradovate.com",
   ],
   "Behaviosec (LexisNexis ThreatMetrix Module)": [
     "https://www.cibconline.cibc.com/ebm-resources/online-banking/client/index.html#/auth/signon?msgId=0008",
@@ -101,17 +156,75 @@
     "https://login.blockchain.com/en/#/login?product=wallet", 
     "https://stockx.com/",
     "https://my.wealthsimple.com/app/login?locale=en-ca",
-    "https://www.dankbank.co/"
+    "https://www.dankbank.co/",
+    "https://www.shopyourway.com/"
+
   ],
   "Forter": [
     "https://www.upwork.com",
     "https://www.citizenwatch.com/ca/en/home/",
     "https://www.wish.com",
-    "https://www.fiverr.com/login"
+    "https://www.fiverr.com/login",
+    "guestreservations.com",
+    "www.douglas.de",
+    "www.farfetch.com",
+    "www.hoka.com",
+    "www.kayak.de",
+    "www.kayak.fr",
+    "www.kayak.ch",
+    "www.oakley.com",
+    "www.ray-ban.com",
+    "www.razer.com",
+    "www.farfetch.com",
+    "buff.market",
+    "www.kiwi.com",
+    "www.sephora.com",
+    "www.vevor.com",
+    "www.zzounds.com",
+    "www.oneplus.com",
+    "ecoflow.com",
+    "de.nothing.tech",
+    "mediamarkt.de",
+    "saturn.de",
+    "www.burgerking.de",
+    "www.douglas.de",
+    "www.gerryweber.com",
+    "www.leslipfrancais.fr",
+    "www.docusign.com",
+    "www.dim.fr",
+    "www.conforama.fr",
+    "thebradery.com",
+    "cultpens.com",
+    "finisterre.com",
+    "mintvelvet.com",
+    "www.condorcycles.com",
+    "www.jigsaw-online.com",
+    "www.nobodyschild.com",
+    "www.rutlands.com",
+    "https://www.musicmagpie.co.uk/",
+    "www.karenmillen.com",
+    "www.onbuy.com",
+    "www.allsaints.com",
+    "www.boohooman.com",
+    "www.hobbycraft.co.uk",
+    "www.smartbuyglasses.co.uk",
+    "www.coastfashion.com",
+    "www.reebok.eu",
+    "www.libertylondon.com",
+    "www.sunglasshut.com",
   ],
   "PingIdentity": [
     "https://www.victoriassecret.com/ca/account/signin",
-    "https://hicmls.clareityiam.net/idp/login"
+    "https://hicmls.clareityiam.net/idp/login",
+    "https://id.insight.com/",
+    "https://www.shopyourway.com/",
+    "clincard.com",
+    "member.bcbsnc.com",
+    "https://my.veteransunited.com/login",
+    "myinfo.kroger.com",
+    "support.drakesoftware.com",
+    "https://www.potterybarnkids.com/",
+    "www.pbteen.com"
   ],
   "Accertify": [
     "https://www.jcpenney.com/checkout/shipping",
@@ -130,39 +243,119 @@
   "TypingDNA": [
     "https://www.typingdna.com/demo-sametext.html"
   ],
+  
   "Human (PerimeterX)": [
-    "https://account.on.sportsbook.fanduel.ca"
+    "https://account.on.sportsbook.fanduel.ca",
+    "chron.com",
+    "www.weekand.com",
+    "seekingalpha.com",
+    "www.bloomberg.com",
+    "www.walmart.com",
+    "www.zillow.com",
+    "octopart.com",
+    "www.skyscanner.com",
+    "www.digikey.com",
+    "www.basicthinking.de",
+    "www.dreamstime.com",
+    "digikey.de",
+    "www.thenorthface.de",
+    "www.digikey.de",
+    "www.vice.com",
+    "www.catawiki.com",
+    "webflow.com",
+    "www.change.org",
+    "www.straight.com",
+    "de.iherb.com",
+    "www.kodi-tipps.de",
+    "www.fiverr.com",
+    "stockx.com",
+    "www.caranddriver.com",
+    "www.perigold.com",
+
   ],
   "ThreatMark": [
     "https://login.sparkasse.at/sts/oauth/authorize?response_type=token&client_id=georgeclient&state="
   ],
   "Transmit Security": [
     "https://app.ethoslife.com/q/goals",
-    "https://hb.illimitybank.com/login"
+    "https://hb.illimitybank.com/login",
+    "client.schwab.com"
+
   ],
   "Darwinium": [
-    "https://www.asaas.com/login/auth?customerSignUpOriginChannel=DIGITAL_ACCOUNT_PAGE"
+    "https://www.asaas.com/login/auth?customerSignUpOriginChannel=DIGITAL_ACCOUNT_PAGE",
+    "https://www.techsydney.com.au/"
   ],
   "Feedzai": [
     "https://www.cajamar.es/es/particulares/productos-y-servicios/banca-a-distancia/",
     "https://portal.kutxabank.es/cs/Satellite/kb/en/private-customers/corporative-information"
   ],
   "DataVisor": [
-    "www.airasia.com"
+    "www.airasia.com",
+    "https://www.mercari.com/"
+
   ],
   "CallSign": [
     "https://wise.com/login",
     "https://online.sainsburysbank.co.uk/servicing/signin"
   ],
   "DataDome": [
-    "www.shutterstock.com"
+    "www.shutterstock.com",
+    "https://www.zoosk.com/login/registration",
+    "hotels.com",
+    "en.comparis.ch",
+    "fr.comparis.ch",
+    "ra.co",
+    "soundcloud.com",
+    "www.alltrails.com",
+    "www.comparis.ch",
+    "www.ebookers.ch",
+    "www.etoro.com",
+    "www.expedia.com",
+    "www.fewo-direkt.de",
+    "www.fdj.fr",
+    "www.hoka.com",
+    "www.immobiliare.it",
+    "www.immowelt.de",
+    "www.leboncoin.fr",
+    "www.nytimes.com",
+    "www.seloger.com",
+    "www.thetrainline.com",
+    "www.yelp.com"
+
   ],
   "Yofi": [
     "www.shipstation.com",
     "cncpts.com",
     "www.dtlr.com",
-    "www.getquip.com"
+    "www.getquip.com",
+    "https://theperfectjean.nyc/en-ca",
+    "https://melin.com/",
+    "https://us.organicbasics.com/",
+    "https://www.springstepshoes.com/en-ca",
   ],
+  
+  "ArkoseLabs": [
+    "expedia.nl",
+    "www.expedia.com",
+    "www.vrbo.com",
+    "hotels.com",
+    "www.abritel.fr",
+    "www.travelocity.com",
+    "www.expediataap.com",
+    "www.carrentals.com",
+    "www.orbitz.com",
+    "www.flights.com",
+    "www.cheaptickets.com",
+    "www.stayz.com.au",
+    "citizensbankonline.com",
+    "auth.tiaa.org",
+    "app.hellofax.com",
+    "secure.zenefits.com",
+    "auth.linktr.ee",
+  ]
+
+
   "Cheq": [
     "www.vivint.com",
     "www.newcastle.edu.au",
