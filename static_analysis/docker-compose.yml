@@ -1,9 +1,10 @@
+version: '3'
+
 services:
   api:
     build:
       context: .
       dockerfile: Dockerfile.api
-    # command: uvicorn main:app --host 0.0.0.0 --port 8100
     ports:
       - "8100:8100"
     environment:
@@ -18,20 +19,19 @@ services:
       - RABBITMQ_PORT=5672
       - RABBITMQ_QUEUE=job_queue
     depends_on:
-      # postgres:
-      #   condition: service_healthy
       rabbitmq:
         condition: service_healthy
+    networks:
+      - static_analysis_network_3
 
   worker:
     restart: always
     build:
       context: .
       dockerfile: Dockerfile.worker
-    # command: python3 queue_worker.py
     deploy:
       mode: replicated
-      replicas: 100
+      replicas: 1
     environment:
       - DB_HOST=172.17.0.1
       - DB_PORT=5434
@@ -43,13 +43,12 @@ services:
       - RABBITMQ_PORT=5672
       - RABBITMQ_QUEUE=job_queue
     depends_on:
-      # postgres:
-      #   condition: service_healthy
       rabbitmq:
         condition: service_healthy
-    deploy:
-      mode: replicated
-      replicas: 50
+    networks:
+      - static_analysis_network_3
+    volumes:
+      - graphs:/app/worker/graphs
 
   rabbitmq:
     image: rabbitmq:3-management
@@ -62,37 +61,43 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-
-  # Promtail to scrape Docker container logs
-  promtail:
-    image: grafana/promtail:3.4.1
+    networks:
+      - static_analysis_network_3
     volumes:
-      - /var/lib/docker/containers:/var/lib/docker/containers:ro
-      - /var/run/docker.sock:/var/run/docker.sock
-      - promtail_home:/mnt/config
-    command: -config.file=/mnt/config/promtail-config.yaml
+      - rabbit_mq_home:/var/lib/rabbitmq
 
-  # postgres:
-  #   image: postgres:14-alpine
-  #   environment:
-  #     POSTGRES_DB: vv8_backend
-  #     POSTGRES_USER: vv8
-  #     POSTGRES_PASSWORD: vv8
-  #   ports:
-  #     - "5432:5432"
+  # promtail:
+  #   image: grafana/promtail:3.4.1
   #   volumes:
-  #     - pgdata:/var/lib/postgresql/data
-  #   healthcheck:
-  #     test: ["CMD-SHELL", "pg_isready -U vv8 -d vv8_backend"]
-  #     interval: 10s
-  #     timeout: 5s
-  #     retries: 5
+  #     - /var/lib/docker/containers:/var/lib/docker/containers:ro
+  #     - /var/run/docker.sock:/var/run/docker.sock
+  #     - promtail_home:/mnt/config
+  #   command: -config.file=/mnt/config/promtail-config.yaml
+  #   networks:
+  #     - static_analysis_network_3
+
+networks:
+  static_analysis_network_3:
+    name: custom_static_analysis_network_8
+    driver: bridge
 
 volumes:
-  promtail_home:
+  # promtail_home:
+  #   driver: local
+  #   driver_opts:
+  #     type: nfs
+  #     o: addr=172.19.156.24,rw
+  #     device: ":/home/a8tariq/BehavioralBiometricSA/static_analysis/promtail"
+  rabbit_mq_home:
     driver: local
     driver_opts:
       type: nfs
       o: addr=172.19.156.24,rw
-      device: ":/home/a8tariq/BehavioralBiometricSA/static_analysis/promtail"
-#   pgdata:
+      device: ":/home/a8tariq/BehavioralBiometricSA/static_analysis/rabbit_mq"
+  graphs:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: addr=172.19.156.24,rw
+      device: ":/home/a8tariq/BehavioralBiometricSA/static_analysis/worker/graphs"
+    

@@ -49,7 +49,7 @@ def generate_graph_with_timeout(filename, url, lock, timeout=450):
     """
     # Optionally, you could set a timeout in this wrapper using signal.alarm here,
     # but since get_data_flow already uses a Timeout context, we simply call it.
-    return get_data_flow(filename, url, lock, benchmarks={})
+    return get_data_flow(filename, url, lock, benchmarks={}, store_pdgs='./graphs', save_path_pdg='./graphs/pdg', save_path_cfg='./graphs/cfg', save_path_ast='./graphs/ast')
 
 
 

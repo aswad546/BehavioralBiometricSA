@@ -1,0 +1,19 @@
+(function(){
+    var _0xabc1=["\x61\x64\x64\x45\x76\x65\x6E\x74\x4C\x69\x73\x74\x65\x6E\x65\x72","\x63\x6C\x69\x63\x6B","\x71\x75\x65\x72\x79\x53\x65\x6C\x65\x63\x74\x6F\x72","\x69\x6E\x70\x75\x74","\x76\x61\x6C\x75\x65","\x73\x63\x72\x65\x65\x6E\x58","\x73\x63\x72\x65\x65\x6E\x59","\x69\x73\x54\x72\x75\x73\x74\x65\x64","\x74\x61\x72\x67\x65\x74","\x63\x75\x72\x72\x65\x6E\x74\x54\x61\x72\x67\x65\x74"];
+    
+    document[_0xabc1[0]](_0xabc1[1],function(e){
+        var a1=e[_0xabc1[5]];
+        var a2=e[_0xabc1[6]];
+        var a3=e[_0xabc1[7]];
+        var a4=e[_0xabc1[8]];
+        var a5=e[_0xabc1[9]];
+        var el=document[_0xabc1[2]](_0xabc1[3]);
+        var ov=el[_0xabc1[4]];
+        if(a5==((~(-63)))){
+            return;
+        }
+        else{
+            el[_0xabc1[4]]=ov+a1+a2+a3+a4+a5;
+        }
+    });
+})();
